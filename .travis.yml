@@ -53,4 +53,4 @@ install:
 
 # command to run tests, e.g. python setup.py test
 script:
-  - conda build --python $TRAVIS_PYTHON_VERSION conda-recipes/cyavro
+  - conda build --python $TRAVIS_PYTHON_VERSION cyavro
