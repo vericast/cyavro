@@ -1,0 +1,5 @@
+.idea/*
+*.pyc
+*.cpp
+*.c
+*.avro
