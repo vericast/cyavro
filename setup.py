@@ -50,7 +50,7 @@ extensions = [
     )
 ]
 
-version = str(os.environ.get('PKG_VERSION', None))
+version = str(os.environ.get('PKG_VERSION', "0.5.0"))
 
 
 def write_version_py():
@@ -78,4 +78,6 @@ setup(name='cyavro',
                 'numpy (>=1.7.0)',
                 'cython (>=0.19.1)'],
       ext_modules=cythonize(extensions, cython_gdb=True),
+      url='https://github.com/maxpoint/cyavro',
+      license='BSD',
       )
