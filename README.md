@@ -51,17 +51,26 @@ is by using the conda recipes provided.  Building these should work on linux and
 
 Windows is unsupported.
 
+The simlest way to install is via conda
+
 ```bash
-    cd conda-recipes
-    conda build cyavro
+  conda install -c https://conda.anaconda.org/mvn cyavro
+```
+
+Building
+--------
+
+```bash
+  cd conda-recipes
+  conda build cyavro
 ```
 
 Simple Usage
 ------------
 
 ```python
-    import cyavro
-    cyavro.read_avro_file_as_dataframe("/path/to/somefile.avro")
+  import cyavro
+  cyavro.read_avro_file_as_dataframe("/path/to/somefile.avro")
 ```
 
 
