@@ -56,9 +56,11 @@ test:
     imports:
         - cyavro
     files:
-        - ../../test/basic_types.py
+        - ../../test/*.py
+        - ../../test/*.pyx
+        - ../../test/*.pyxbld
     commands:
-        - py.test basic_types.py
+        - py.test *.py
 
 about:
     license: BSD
