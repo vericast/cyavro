@@ -33,7 +33,9 @@ cimport cyavro._cyavro as cyavro
 
 
 cpdef get_reader(str fpath):
-    cdef FILE* cfile = fopen(fpath, "rb")
+    py_byte_string = fpath.encode('UTF-8')
+    cdef char* c_fpath =  py_byte_string
+    cdef FILE* cfile = fopen(c_fpath, "rb")
 
     fseek(cfile, 0, SEEK_END)
     cdef long fsize = ftell(cfile)
