@@ -26,7 +26,6 @@
 Tests the `reader_from_bytes_c` cython exposed function
 """
 import os
-import unittest
 import tempfile
 
 import numpy as np
