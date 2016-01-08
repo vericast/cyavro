@@ -45,6 +45,9 @@ from libc.stdint cimport int32_t, int64_t
 from _cavro cimport *
 from six import string_types, binary_type, iteritems
 
+# from posix.stdio cimport *  # New on cython, not yet released
+from pstdio cimport *
+
 # Globals
 cdef int64_t PANDAS_NaT = np.datetime64('nat').astype('int64') # Not a time from pandas
 # numpy / pandas do not support nullable int32/int64 dtypes.  These values are treated as avro nulls.
@@ -81,14 +84,10 @@ cdef class AvroReader(object):
     >>> rd.close()
 
     """
-    cdef avro_file_reader_t _reader
-    cdef public int chunk_size
-    cdef public list refholder, field_names, field_types, buffer_lst
-    cdef public str filename
-    cdef int empty_file
 
     def __cinit__(self):
         self._reader = NULL
+        self.reset_reader = 1
 
     def __init__(self, str filename):
         self.chunk_size = 10000
@@ -114,6 +113,23 @@ cdef class AvroReader(object):
             filereader = self._reader
             avro_file_reader_close(filereader)
             self._reader = NULL
+
+    cdef from_bytes(self, void *buffer, int length):
+        cdef FILE* cfile
+        cfile = fmemopen(buffer, length, "rb")
+
+        cdef avro_file_reader_t filereader
+        cdef rval = avro_file_reader_fp(cfile, "unused", 0, &filereader)
+
+        if rval != 0:
+            avro_error = avro_strerror().decode('UTF-8')
+            if 'Cannot read file block count' in avro_error:
+                self.empty_file = True
+            else:
+                raise Exception("Can't read file : {}".format(avro_error))
+
+        self._reader = filereader
+        self.reset_reader = 0
 
     def init_reader(self):
         """Initialize the file reader object.  This must be called before calling :meth:`init_buffers`
@@ -222,9 +238,10 @@ cdef class AvroReader(object):
         avro_value_iface_decref(iface)
         avro_schema_decref(wschema)
 
-        #Reset file reader
-        avro_file_reader_close(filereader)
-        self.init_reader()
+        # Reset file reader
+        if self.reset_reader:
+            avro_file_reader_close(filereader)
+            self.init_reader()
 
     def read_chunk(self):
         """Reads a chunk of records from the avro file.
