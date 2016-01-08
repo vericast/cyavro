@@ -68,7 +68,7 @@ write_version_py()
 setup(name='cyavro',
       version=version,
       packages=['cyavro'],
-      package_data={'cyavro': ['_cyavro.c']},
+      package_data={'cyavro': ['_cyavro.c', '*.pyx', '*.pxd']},
       description='Wrapper to avro-c-1.7.5',
       maintainer='MaxPoint Interactive',
       maintainer_email='marius.vanniekerk@maxpoint.com',
