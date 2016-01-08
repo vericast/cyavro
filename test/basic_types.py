@@ -300,6 +300,3 @@ class TestBasicTypes(unittest.TestCase):
             ]
         }
         self.generic_dataframe(df, schema)
-
-if __name__ == '__main__':
-    unittest.main()
