@@ -87,7 +87,8 @@ cdef class AvroReader(object):
 
     def __cinit__(self):
         self._reader = NULL
-        self.reset_reader = 1
+        self.fp_reader_buffer = NULL
+        self.fp_reader_buffer_length = 0
 
     def __init__(self, str filename):
         self.chunk_size = 10000
@@ -114,23 +115,6 @@ cdef class AvroReader(object):
             avro_file_reader_close(filereader)
             self._reader = NULL
 
-    cdef from_bytes(self, void *buffer, int length):
-        cdef FILE* cfile
-        cfile = fmemopen(buffer, length, "rb")
-
-        cdef avro_file_reader_t filereader
-        cdef rval = avro_file_reader_fp(cfile, "unused", 0, &filereader)
-
-        if rval != 0:
-            avro_error = avro_strerror().decode('UTF-8')
-            if 'Cannot read file block count' in avro_error:
-                self.empty_file = True
-            else:
-                raise Exception("Can't read file : {}".format(avro_error))
-
-        self._reader = filereader
-        self.reset_reader = 0
-
     def init_reader(self):
         """Initialize the file reader object.  This must be called before calling :meth:`init_buffers`
         """
@@ -151,6 +135,23 @@ cdef class AvroReader(object):
             else:
                 raise Exception("Can't read file : {}".format(avro_error))
 
+        self._reader = filereader
+
+    cdef init_reader_buffer(self):
+        """Initialize the file reader object based on a File Description using
+        avro_file_reader_fp
+        """
+        cdef FILE* cfile = fmemopen(self.fp_reader_buffer, self.fp_reader_buffer_length, "rb")
+
+        cdef avro_file_reader_t filereader
+        cdef rval = avro_file_reader_fp(cfile, "unused", 0, &filereader)
+
+        if rval != 0:
+            avro_error = avro_strerror().decode('UTF-8')
+            if 'Cannot read file block count' in avro_error:
+                self.empty_file = True
+            else:
+                raise Exception("Can't read file : {}".format(avro_error))
         self._reader = filereader
 
     def init_buffers(self, size_t chunk_size=0):
@@ -239,8 +240,10 @@ cdef class AvroReader(object):
         avro_schema_decref(wschema)
 
         # Reset file reader
-        if self.reset_reader:
-            avro_file_reader_close(filereader)
+        avro_file_reader_close(filereader)
+        if self.fp_reader_buffer != NULL:
+            self.init_reader_buffer()
+        else:
             self.init_reader()
 
     def read_chunk(self):
@@ -303,6 +306,18 @@ cdef class AvroReader(object):
         avro_schema_decref(wschema)
 
         return out
+
+
+cdef reader_from_bytes_c(void *buffer, int length):
+    """Returns an AvroReader based on a buffer of bytes.
+    Useful for other cython extentions that already have a `void *`
+    Caller should call `init_buffers`
+    """
+    reader = AvroReader("unused")
+    reader.fp_reader_buffer = buffer
+    reader.fp_reader_buffer_length = length
+    reader.init_reader_buffer()
+    return reader
 
 
 cdef int read_record(const avro_value_t val, list container, size_t row) except -1:

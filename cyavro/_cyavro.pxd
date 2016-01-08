@@ -6,6 +6,9 @@ cdef class AvroReader:
     cdef public list refholder, field_names, field_types, buffer_lst
     cdef public str filename
     cdef int empty_file
-    cdef int reset_reader
+    cdef void *fp_reader_buffer
+    cdef int fp_reader_buffer_length
 
-    cdef from_bytes(self, void *buffer, int length)
+    cdef init_reader_buffer(self)
+
+cdef reader_from_bytes_c(void *buffer, int length)
