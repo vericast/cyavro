@@ -46,7 +46,7 @@ from _cavro cimport *
 from six import string_types, binary_type, iteritems
 
 # from posix.stdio cimport *  # New on cython, not yet released
-from pstdio cimport *
+from posixstdio cimport *
 
 # Globals
 cdef int64_t PANDAS_NaT = np.datetime64('nat').astype('int64') # Not a time from pandas
