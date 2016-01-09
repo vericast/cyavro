@@ -3,3 +3,13 @@
 *.cpp
 *.c
 *.avro
+*.so
+*.pyxbldc
+__pycache__
+
+# Packaging
+build/
+dist/
+*.egg-info/
+.cache
+MANIFEST
