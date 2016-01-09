@@ -29,6 +29,8 @@ cimport numpy as np
 
 from libc.stdint cimport int32_t, int64_t
 from libc.stdlib cimport *
+from libc.stdio cimport *
+
 
 cdef extern from 'avro.h':
     #'basics.h':
@@ -178,6 +180,8 @@ cdef extern from 'avro.h':
                 avro_file_writer_t * writer)
 
     int avro_file_reader(const char *path, avro_file_reader_t * reader)
+    int avro_file_reader_fp(FILE *fp, const char *path, int should_close, avro_file_reader_t * reader)
+
     avro_schema_t avro_file_reader_get_writer_schema(avro_file_reader_t reader)
 
     int avro_file_writer_sync(avro_file_writer_t writer)
