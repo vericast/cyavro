@@ -37,6 +37,8 @@ import cyavro
 import pyximport; pyximport.install()
 import from_bytes_c_helper
 
+import io
+
 
 avroschema = """ {"type": "record",
 "name": "from_bytes_test",
@@ -47,10 +49,9 @@ avroschema = """ {"type": "record",
 }
 """
 
-
-def test_from_bytes():
+def prepare_file(fpath):
     tmpdir = tempfile.gettempdir()
-    fpath = os.path.join('from_bytes_data.avro')
+    fpath = os.path.join(fpath)
     writer = cyavro.AvroWriter(fpath, 'null', avroschema)
 
     ids = np.random.randint(100, size=10)
@@ -61,6 +62,10 @@ def test_from_bytes():
 
     writer.write(df_write)
     writer.close()
+    return df_write, fpath
+
+def test_from_bytes():
+    df_write, fpath = prepare_file('from_bytes_data.avro')
 
     reader = from_bytes_c_helper.get_reader(fpath)
     reader.init_buffers()
@@ -68,3 +73,29 @@ def test_from_bytes():
 
     pdt.assert_frame_equal(df_write, df_read)
     reader.close()
+
+
+def test_from_bytes_python():
+    df_write, fpath = prepare_file('from_bytes_data_py.avro')
+
+    with open(fpath, 'rb') as fo:
+        data = fo.read()
+
+    reader = cyavro.AvroReader()
+    reader.init_bytes(data)
+    reader.init_reader()
+    reader.init_buffers()
+    df_read = pd.DataFrame(reader.read_chunk())
+
+    pdt.assert_frame_equal(df_write, df_read)
+    reader.close()
+
+def test_from_byesio():
+    df_write, fpath = prepare_file('from_bytes_data_py.avro')
+
+    with open(fpath, 'rb') as fo:
+        data = fo.read()
+        bytesIO = io.BytesIO(data)
+
+    df_read = cyavro.read_avro_bytesio_as_dataframe(bytesIO)
+    pdt.assert_frame_equal(df_write, df_read)
