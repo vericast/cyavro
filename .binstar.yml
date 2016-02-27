@@ -12,8 +12,8 @@ package: cyavro
 ## install and build.  For example, the r channel is needed for
 ## r builds.  Channel 'defaults' is always added.
 install_channels:
-  - mvn
   - defaults
+  - https://conda.anaconda.org/mvn
 
 #===============================================================================
 # Build Matrix Options
@@ -47,11 +47,6 @@ engine:
 #   - echo "before_script!"
 ## Put your main computations here!
 script:
-  #- conda build conda-recipes/libsnappy
-  #- conda build conda-recipes/libavro
-  #- conda build conda-recipes/python-snappy
-  #- conda build conda-recipes/avro
-  #- conda build conda-recipes/filelock
   - conda build conda-recipes/cyavro
 
 
