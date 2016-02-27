@@ -10,7 +10,7 @@ cyavro
   <td>License</td>
   <td>
     <a href="https://github.com/MaxPoint/cyavro/blob/master/LICENSE.txt">
-    <img src="https://img.shields.io/github/license/MaxPoint/cyavro.svg" alt="cyavro license" />
+    <img src="https://anaconda.org/mvn/cyavro/badges/license.svg" alt="cyavro license" />
     </a>
   </td>
 </tr>
