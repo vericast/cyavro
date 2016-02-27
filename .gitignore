@@ -13,3 +13,4 @@ dist/
 *.egg-info/
 .cache
 MANIFEST
+.ipynb_checkpoints/

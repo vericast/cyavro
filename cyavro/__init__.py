@@ -106,7 +106,8 @@ def read_avro_file_as_dataframe_iter(path_to_file, buffer_size=DEFAULT_BUFFER_SI
     df : yields :class:`pd.DataFrame`
         A generator yielding :class:`pd.DataFrame` objects for each `buffer_size` chunk
     """
-    reader = avro_reader_cls(path_to_file)
+    reader = avro_reader_cls()
+    reader.init_file(path_to_file)
     try:
         reader.init_reader()
         reader.init_buffers(buffer_size)
@@ -118,6 +119,39 @@ def read_avro_file_as_dataframe_iter(path_to_file, buffer_size=DEFAULT_BUFFER_SI
                 break
     finally:
         reader.close()
+
+
+def read_avro_bytesio_as_dataframe_iter(filelikeobject, buffer_size=DEFAULT_BUFFER_SIZE):
+    """Reads an avro file.
+
+    Parameters
+    ----------
+    path_to_file : string
+        /path/to/the/file.avro
+    buffer_size : int
+        Number of rows to read per block read.
+
+    Returns
+    -------
+    df : yields :class:`pd.DataFrame`
+        A generator yielding :class:`pd.DataFrame` objects for each `buffer_size` chunk
+    """
+    reader = avro_reader_cls()
+    data = filelikeobject.read()
+    reader.init_bytes(data)
+    try:
+        reader.init_reader()
+        reader.init_buffers(buffer_size)
+        while True:
+            df = pd.DataFrame(reader.read_chunk())
+            if len(df):
+                yield df
+            else:
+                break
+    finally:
+        reader.close()
+
+
 
 
 def group_dataframe_iter(iterator, group_by):
@@ -198,6 +232,12 @@ def read_avro_file_as_dataframe(path_to_file, buffer_size=DEFAULT_BUFFER_SIZE):
         A pandas DataFrame of the avro file.
     """
     it = read_avro_file_as_dataframe_iter(path_to_file, buffer_size)
+    df = pd.concat([df for df in it], ignore_index=True)
+    return df
+
+
+def read_avro_bytesio_as_dataframe(filelikeobject, buffer_size=DEFAULT_BUFFER_SIZE):
+    it = read_avro_bytesio_as_dataframe_iter(filelikeobject, buffer_size)
     df = pd.concat([df for df in it], ignore_index=True)
     return df
 

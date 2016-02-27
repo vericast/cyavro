@@ -44,6 +44,7 @@ cimport numpy as np
 from libc.stdint cimport int32_t, int64_t
 from _cavro cimport *
 from six import string_types, binary_type, iteritems
+from libc.string cimport memcpy
 
 # from posix.stdio cimport *  # New on cython, not yet released
 from posixstdio cimport *
@@ -89,14 +90,25 @@ cdef class AvroReader(object):
         self._reader = NULL
         self.fp_reader_buffer = NULL
         self.fp_reader_buffer_length = 0
+        self._should_free_buffer = True
 
-    def __init__(self, str filename):
+    def __init__(self):
         self.chunk_size = 10000
-        self.filename = filename
         self.refholder = []
         self.field_names = []
         self.field_types = []
         self.empty_file = False
+        self.reader_type = avro_reader_type_unset
+        self.initialized = False
+
+    def init_file(self, str filename):
+        self.filename = filename
+        self.reader_type = avro_reader_type_file
+
+    def init_bytes(self, bytes data):
+        self.filedata = data
+        self.filedatalength = len(data) + 1 
+        self.reader_type = avro_reader_type_bytes
 
     def __dealloc__(self):
         # Ensure that we close the reader properly
@@ -107,6 +119,9 @@ cdef class AvroReader(object):
                 avro_file_reader_close(filereader)
             finally:
                 self._reader = NULL
+        if self.fp_reader_buffer != NULL:
+            free(self.fp_reader_buffer)
+            self.fp_reader_buffer = NULL
 
     def close(self):
         cdef avro_file_reader_t filereader
@@ -114,8 +129,29 @@ cdef class AvroReader(object):
             filereader = self._reader
             avro_file_reader_close(filereader)
             self._reader = NULL
+        if self.fp_reader_buffer != NULL:
+            free(self.fp_reader_buffer)
+            self.fp_reader_buffer = NULL
 
     def init_reader(self):
+        if self.reader_type == avro_reader_type_file:
+            self.init_file_reader()
+        elif self.reader_type == avro_reader_type_bytes:
+            #raise Exception("DEATH")
+            self.init_memory_reader()
+
+    cdef init_memory_reader(self):
+        #raise Exception("ASDASD")
+
+        cdef char* cbytes = self.filedata
+        cdef int size = len(self.filedata)
+        cdef void *dest = malloc(size + 1)
+        memcpy(dest, cbytes, size)
+        self.fp_reader_buffer = dest
+        self.fp_reader_buffer_length = size
+        self.init_reader_buffer()
+
+    cdef init_file_reader(self):
         """Initialize the file reader object.  This must be called before calling :meth:`init_buffers`
         """
 
@@ -136,6 +172,7 @@ cdef class AvroReader(object):
                 raise Exception("Can't read file : {}".format(avro_error))
 
         self._reader = filereader
+        self.initialized = True
 
     cdef init_reader_buffer(self):
         """Initialize the file reader object based on a File Description using
@@ -153,6 +190,7 @@ cdef class AvroReader(object):
             else:
                 raise Exception("Can't read file : {}".format(avro_error))
         self._reader = filereader
+        self.initialized = True
 
     def init_buffers(self, size_t chunk_size=0):
         """Initialize the buffers for the reader object.  This must be called before calling :meth:`read_chunk`
@@ -166,6 +204,9 @@ cdef class AvroReader(object):
             to use.
 
         """
+        if not self.initialized:
+            raise Exception("Reader not initialized")
+
         # If the file contains nothing: do nothing.
         if self.empty_file:
             return
@@ -313,7 +354,8 @@ cdef reader_from_bytes_c(void *buffer, int length):
     Useful for other cython extentions that already have a `void *`
     Caller should call `init_buffers`
     """
-    reader = AvroReader("unused")
+    reader = AvroReader()
+    reader._should_free_buffer = False
     reader.fp_reader_buffer = buffer
     reader.fp_reader_buffer_length = length
     reader.init_reader_buffer()
