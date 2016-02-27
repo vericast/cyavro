@@ -4,7 +4,15 @@ cyavro
 <table>
 <tr>
   <td>Latest Release</td>
-  <td><img src="https://img.shields.io/pypi/v/cyavro.svg" alt="latest release" /></td>
+  <td>
+    <a href="https://pypi.python.org/pypi/cyavro">
+      <img src="https://img.shields.io/pypi/v/cyavro.svg" alt="latest release" />
+    </a>
+    
+    <a href="https://anaconda.org/mvn/cyavro/files">
+      <img src="https://anaconda.org/mvn/cyavro/badges/version.svg">
+    </a>
+  </td>
 </tr>
 <tr>
   <td>License</td>
