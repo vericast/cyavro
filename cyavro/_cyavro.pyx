@@ -90,6 +90,7 @@ cdef class AvroReader(object):
         self._reader = NULL
         self.fp_reader_buffer = NULL
         self.fp_reader_buffer_length = 0
+        self._should_free_buffer = True
 
     def __init__(self):
         self.chunk_size = 10000
@@ -118,6 +119,9 @@ cdef class AvroReader(object):
                 avro_file_reader_close(filereader)
             finally:
                 self._reader = NULL
+        if self.fp_reader_buffer != NULL:
+            free(self.fp_reader_buffer)
+            self.fp_reader_buffer = NULL
 
     def close(self):
         cdef avro_file_reader_t filereader
@@ -125,26 +129,24 @@ cdef class AvroReader(object):
             filereader = self._reader
             avro_file_reader_close(filereader)
             self._reader = NULL
+        if self.fp_reader_buffer != NULL:
+            free(self.fp_reader_buffer)
+            self.fp_reader_buffer = NULL
 
     def init_reader(self):
         if self.reader_type == avro_reader_type_file:
             self.init_file_reader()
         elif self.reader_type == avro_reader_type_bytes:
+            #raise Exception("DEATH")
             self.init_memory_reader()
 
     cdef init_memory_reader(self):
+        #raise Exception("ASDASD")
+
         cdef char* cbytes = self.filedata
-        print(self.filedata[:100])
-
         cdef int size = len(self.filedata)
-
-        print("Size:", size)
-
         cdef void *dest = malloc(size + 1)
         memcpy(dest, cbytes, size)
-
-        print("MemCpy done")
-
         self.fp_reader_buffer = dest
         self.fp_reader_buffer_length = size
         self.init_reader_buffer()
@@ -353,6 +355,7 @@ cdef reader_from_bytes_c(void *buffer, int length):
     Caller should call `init_buffers`
     """
     reader = AvroReader()
+    reader._should_free_buffer = False
     reader.fp_reader_buffer = buffer
     reader.fp_reader_buffer_length = length
     reader.init_reader_buffer()

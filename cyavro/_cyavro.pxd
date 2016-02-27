@@ -10,8 +10,7 @@ cdef class AvroReader:
     cdef public int chunk_size
     cdef public list refholder, field_names, field_types, buffer_lst
     cdef public str filename
-    cdef int initialized
-    cdef int empty_file
+    cdef int initialized, empty_file, _should_free_buffer
     cdef void *fp_reader_buffer
     cdef int fp_reader_buffer_length
 
