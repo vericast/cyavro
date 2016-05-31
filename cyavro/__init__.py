@@ -515,7 +515,7 @@ def infer_avro_schema_for_dataframe(df):
 
     dtypes = df.dtypes
     fields = []
-    for name, typ in dtypes.iteritems():
+    for name, typ in six.iteritems(dtypes):
         fields.append('{"name":"%(name)s", "type": %(type)s}' % {'name': name, 'type': _get_avro_dtype(typ, df[name])})
 
     return '''{
