@@ -28,7 +28,7 @@ package:
 
 source:
     fn: avro-c-1.7.7.tar.gz
-    url: http://apache.arvixe.com/avro/avro-1.7.7/c/avro-c-1.7.7.tar.gz
+    url: http://www-us.apache.org/dist/avro/avro-1.7.7/c/avro-c-1.7.7.tar.gz
 
     patches:
         - make.patch
