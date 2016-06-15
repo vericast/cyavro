@@ -31,6 +31,13 @@ python:
   - "3.5"
   - "2.7"
 
+matrix:
+  include:
+    - os: osx
+      env: OSNAME="MacOSX"
+    - os: linux
+      env: OSNAME="Linux"
+
 # command to install dependencies, e.g. pip install -r requirements.txt --use-mirrors
 install:
   - wget http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O miniconda.sh
