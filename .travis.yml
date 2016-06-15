@@ -27,21 +27,13 @@
 
 matrix:
   - os: osx
-    env:
-      - OSNAME="MacOSX"
-      - PY_VERSION="2.7"
+    env: OSNAME="MacOSX" PY_VERSION="2.7"
   - os: osx
-    env:
-      - OSNAME="MacOSX"
-      - PY_VERSION="3.5"
+    env: OSNAME="MacOSX" PY_VERSION="3.5"
   - os: linux
-    env:
-      - OSNAME="Linux"
-      - PY_VERSION="2.7"
+    env: OSNAME="Linux" PY_VERSION="2.7"
   - os: linux
-    env:
-      - OSNAME="Linux"
-      - PY_VERSION="3.5"
+    env: OSNAME="Linux" PY_VERSION="3.5"
 
 
 # command to install dependencies, e.g. pip install -r requirements.txt --use-mirrors
