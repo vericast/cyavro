@@ -42,7 +42,7 @@ matrix:
       env:
         - OSNAME="Linux"
         - PY_VERSION="2.7"
-    - os: osx
+    - os: linux
       env:
         - OSNAME="Linux"
         - PY_VERSION="3.5"
