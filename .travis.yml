@@ -25,18 +25,23 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
-os:
-
 matrix:
-  include:
-    - PY_VERSION:
-      - 2.7
-      - 3.4
-      - 3.5
-    - os: osx
-      env: OSNAME="MacOSX"
-    - os: linux
-      env: OSNAME="Linux"
+  - os: osx
+    env:
+      - OSNAME="MacOSX"
+      - PY_VERSION="2.7"
+  - os: osx
+    env:
+      - OSNAME="MacOSX"
+      - PY_VERSION="3.5"
+  - os: linux
+    env:
+      - OSNAME="Linux"
+      - PY_VERSION="2.7"
+  - os: linux
+    env:
+      - OSNAME="Linux"
+      - PY_VERSION="3.5"
 
 
 # command to install dependencies, e.g. pip install -r requirements.txt --use-mirrors
