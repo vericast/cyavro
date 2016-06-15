@@ -27,6 +27,7 @@ from Cython.Build import cythonize
 from distutils.extension import Extension
 import numpy as np
 import os
+import platform
 
 #import Cython.Compiler.Options
 #Cython.Compiler.Options.annotate = True
@@ -49,6 +50,9 @@ extensions = [
         libraries=['avro', 'm', 'snappy'],
     )
 ]
+
+if platform.system() == "Darwin":
+    extensions[0].sources = ["cyavro/osx/fmemopen.h", "cyavro/osx/fmemopen.c"]
 
 version = str(os.environ.get('PKG_VERSION', "0.6.1"))
 
