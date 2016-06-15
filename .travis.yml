@@ -30,9 +30,9 @@ os:
 matrix:
   include:
     - PY_VERSION:
-      -2.7
-      -3.4
-      -3.5
+      - 2.7
+      - 3.4
+      - 3.5
     - os:
       - osx
         env: OSNAME="MacOSX"
