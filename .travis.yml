@@ -30,11 +30,13 @@ sudo: false
 
 matrix:
   include:
-    - os: osx
+    - language: objective-c
+      os: osx
       env:
         - OSNAME="MacOSX"
         - PY_VERSION="2.7"
-    - os: osx
+    - language: objective-c
+      os: osx
       env:
         - OSNAME="MacOSX"
         - PY_VERSION="3.5"
