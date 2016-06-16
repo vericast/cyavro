@@ -50,7 +50,7 @@ extensions = [
     )
 ]
 
-version = str(os.environ.get('PKG_VERSION', "0.6.1"))
+version = str(os.environ.get('PKG_VERSION', "0.6.2"))
 
 
 def write_version_py():
