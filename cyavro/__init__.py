@@ -152,8 +152,6 @@ def read_avro_bytesio_as_dataframe_iter(filelikeobject, buffer_size=DEFAULT_BUFF
         reader.close()
 
 
-
-
 def group_dataframe_iter(iterator, group_by):
     """splits an iterator of dataframes into group chunks.
 
