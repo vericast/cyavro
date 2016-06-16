@@ -33,7 +33,7 @@ from cyavro._cyavro import AvroReader, AvroWriter, prepare_pandas_df_for_write
 import pandas as pd
 import os as os
 import glob as glob
-from filelock.filelock import FileLock
+from filelock import FileLock
 import six
 import json
 try:
@@ -150,8 +150,6 @@ def read_avro_bytesio_as_dataframe_iter(filelikeobject, buffer_size=DEFAULT_BUFF
                 break
     finally:
         reader.close()
-
-
 
 
 def group_dataframe_iter(iterator, group_by):
