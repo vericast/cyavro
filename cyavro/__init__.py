@@ -473,7 +473,7 @@ def infer_avro_schema_for_dataframe(df):
             elif issubclass(tp, float):
                 return '"double"'
             elif issubclass(tp, bool):
-                return '"bool"'
+                return '"boolean"'
             elif issubclass(tp, type(None)):
                 return '"null"'
             else:
@@ -502,7 +502,7 @@ def infer_avro_schema_for_dataframe(df):
         elif dtype == np.float64:
             return '"double"'
         elif dtype == np.bool:
-            return '"bool"'
+            return '"boolean"'
         elif dtype == np.dtype('datetime64[ns]'):
             return '"long"'
         elif dtype == np.object:
