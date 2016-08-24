@@ -1,0 +1,2 @@
+include versioneer.py
+include cyavro/_version.py

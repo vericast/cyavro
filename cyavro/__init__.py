@@ -523,3 +523,7 @@ def infer_avro_schema_for_dataframe(df):
     "fields": [
         %(fields)s
     ]}''' % {'fields': (',\n' + ' ' * 8).join(fields)}
+
+from ._version import get_versions
+__version__ = get_versions()['version']
+del get_versions
