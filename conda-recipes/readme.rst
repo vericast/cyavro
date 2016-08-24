@@ -1,1 +1,0 @@
-Conda recipes for cyavro and its dependencies.
