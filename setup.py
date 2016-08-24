@@ -27,14 +27,18 @@ from Cython.Build import cythonize
 from distutils.extension import Extension
 import numpy as np
 import os
+import versioneer
 
-#import Cython.Compiler.Options
-#Cython.Compiler.Options.annotate = True
+def _get_include(prefix):
+    return [os.path.join(prefix, 'include')], [os.path.join(prefix, 'lib')]
 
-prefix = os.getenv('PREFIX', None)
-if prefix is not None:
-    include_dirs = [os.path.join(prefix, 'include')]
-    library_dirs = [os.path.join(prefix, 'lib')]
+# This is needed by conda build
+if 'PREFIX' in os.environ:
+    print("Operating setup.py from within conda-build")
+    include_dirs, library_dirs = _get_include(os.environ['PREFIX'])
+elif 'CONDA_ENV_PATH' in os.environ:
+    print("Operating setup.py from within a conda environment")
+    include_dirs, library_dirs = _get_include(os.environ['CONDA_ENV_PATH'])
 else:
     include_dirs = []
     library_dirs = []
@@ -50,23 +54,9 @@ extensions = [
     )
 ]
 
-version = str(os.environ.get('PKG_VERSION', "0.6.2"))
-
-
-def write_version_py():
-    content = """\
-version = '%s'
-""" % version
-
-    filename = os.path.join(os.path.dirname(__file__), 'cyavro', 'version.py')
-    with open(filename, 'w') as fo:
-        fo.write(content)
-
-write_version_py()
-
-
 setup(name='cyavro',
-      version=version,
+      version=versioneer.get_version(),
+      cmdclass=versioneer.get_cmdclass(),
       packages=['cyavro'],
       package_data={'cyavro': ['_cyavro.c', '*.pyx', '*.pxd']},
       description='Wrapper to avro-c-1.7.5',
