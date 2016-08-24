@@ -42,7 +42,7 @@ install:
   - conda update conda
 
   # Install deps
-  - conda create -n test-environment python=$TRAVIS_PYTHON_VERSION cyavro
+  - conda create -n test-environment python=$TRAVIS_PYTHON_VERSION cyavro pip
   - source activate test-environment
   - conda remove cyavro --force
 
