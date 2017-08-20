@@ -70,6 +70,7 @@ install:
   - conda config --add channels conda-forge
   - conda update conda
   - conda install conda-build
+  - conda update -n root conda-build
 
   # Make deps
   - cd conda-recipes
