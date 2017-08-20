@@ -60,7 +60,7 @@ matrix:
 
 # command to install dependencies, e.g. pip install -r requirements.txt --use-mirrors
 install:
-  - wget http://repo.continuum.io/miniconda/Miniconda-latest-${OSNAME}-x86_64.sh -O miniconda.sh
+  - wget https://repo.continuum.io/miniconda/Miniconda-latest-${OSNAME}-x86_64.sh -O miniconda.sh
   - bash miniconda.sh -b -p $HOME/miniconda
   - export PATH="$HOME/miniconda/bin:$PATH"
   - conda config --set always_yes yes --set changeps1 no
