@@ -32,16 +32,19 @@ matrix:
   include:
     - language: objective-c
       os: osx
+      osx_image: xcode6.4
       env:
         - OSNAME="MacOSX"
         - PY_VERSION="2.7"
     - language: objective-c
       os: osx
+      osx_image: xcode6.4
       env:
         - OSNAME="MacOSX"
         - PY_VERSION="3.5"
     - language: objective-c
       os: osx
+      osx_image: xcode6.4
       env:
         - OSNAME="MacOSX"
         - PY_VERSION="3.6"
