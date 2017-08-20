@@ -6,7 +6,7 @@ package:
 
 source:
     fn: avro-c-{{ version }}.tar.gz
-    url: https://www-us.apache.org/dist/avro/avro-{{ version }}/c/avro-c-{{ version }}.tar.gz
+    url: https://archive.apache.org/dist/avro/avro-{{ version }}/c/avro-c-{{ version }}.tar.gz
     sha1: 93abae3d078e34900c1fee38fb0af2dcde624c8b
 
 build:
