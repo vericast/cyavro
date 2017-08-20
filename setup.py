@@ -32,10 +32,17 @@ import platform
 #import Cython.Compiler.Options
 #Cython.Compiler.Options.annotate = True
 
-prefix = os.getenv('PREFIX', None)
-if prefix is not None:
-    include_dirs = [os.path.join(prefix, 'include')]
-    library_dirs = [os.path.join(prefix, 'lib')]
+
+def _get_include(prefix):
+    return [os.path.join(prefix, 'include')], [os.path.join(prefix, 'lib')]
+
+# This is needed by conda build
+if 'PREFIX' in os.environ:
+    print("Operating setup.py from within conda-build")
+    include_dirs, library_dirs = _get_include(os.environ['PREFIX'])
+elif 'CONDA_ENV_PATH' in os.environ:
+    print("Operating setup.py from within a conda environment")
+    include_dirs, library_dirs = _get_include(os.environ['CONDA_ENV_PATH'])
 else:
     include_dirs = []
     library_dirs = []
