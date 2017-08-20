@@ -37,22 +37,22 @@ requirements:
         - python
         - cython
         - numpy
-        - libavro
+        - avro
         - six
         - jinja2
     run:
         - python
         - numpy
-        - libavro
+        - avro
         - pandas >=0.16
         - filelock
         - six
-        - avro
+        - python-avro
 
 test:
     requires:
         - pytest
-        - avro
+        - python-avro
         - cython
     imports:
         - cyavro
@@ -66,5 +66,5 @@ test:
 
 about:
     license: BSD
-    summary: "Fast avro reader and writer using libavro"
+    summary: "Fast python-avro reader and writer using libavro"
     home: http://github.com/MaxPoint/cyavro

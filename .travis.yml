@@ -40,6 +40,11 @@ matrix:
       env:
         - OSNAME="MacOSX"
         - PY_VERSION="3.5"
+    - language: objective-c
+      os: osx
+      env:
+        - OSNAME="MacOSX"
+        - PY_VERSION="3.6"
     - os: linux
       env:
         - OSNAME="Linux"
@@ -48,7 +53,10 @@ matrix:
       env:
         - OSNAME="Linux"
         - PY_VERSION="3.5"
-
+    - os: linux
+      env:
+        - OSNAME="Linux"
+        - PY_VERSION="3.6"
 
 # command to install dependencies, e.g. pip install -r requirements.txt --use-mirrors
 install:
@@ -61,8 +69,8 @@ install:
 
   # Make deps
   - cd conda-recipes
+  - conda build --python $PY_VERSION python-avro
   - conda build --python $PY_VERSION avro
-  - conda build --python $PY_VERSION libavro
   - conda build --python $PY_VERSION python-snappy
   - conda build --python $PY_VERSION filelock
 

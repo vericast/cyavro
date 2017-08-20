@@ -1,0 +1,64 @@
+{% set version = "1.1.6" %}
+{% set sha256 = "6fa92cde5b2caefd0d9a60336991ba42e5a7ddc3bdc36c5610451373751d0495" %}
+
+package:
+  name: snappy
+  version: {{ version }}
+
+source:
+  url: https://github.com/google/snappy/archive/{{ version }}.tar.gz
+  fn: snappy-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+  patches:
+    # Have snappy-unittest not run the slow-ish microbenchmarks, but just
+    # the quick correctness tests, without bothering with gflags (which didn't
+    # work out of the box). This is the recommended method in the README.
+    - skip-microbenchmarks.patch
+    # Patch CMakeLists to build a static library as well.
+    # Submitted upstream as: https://github.com/google/snappy/pull/48
+    - build-static-lib.patch
+
+build:
+  number: 1
+  skip: true  # [win and py35]
+  features:
+    - vc9   # [win and py27]
+    - vc10  # [win and py34]
+    - vc14  # [win and py>=35]
+
+requirements:
+  build:
+    - toolchain
+    - python      # [win]
+    - cmake
+    - msinttypes  # [win]
+
+test:
+  requires:
+    - python {{ environ['PY_VER'] + '*' }}  # [win]
+  commands:
+    - test -e $PREFIX/include/snappy.h               # [unix]
+    - test -e $PREFIX/include/snappy-stubs-public.h  # [unix]
+    - test -e $PREFIX/lib/libsnappy$SHLIB_EXT        # [unix]
+    - test -e $PREFIX/lib/libsnappy.a                # [unix]
+    - if not exist %LIBRARY_INC%\snappy.h exit 1               # [win]
+    - if not exist %LIBRARY_INC%\snappy-stubs-public.h exit 1  # [win]
+    - if not exist %LIBRARY_LIB%\snappy.lib exit 1             # [win]
+    - if not exist %LIBRARY_BIN%\snappy.dll exit 1             # [win]
+    - if not exist %LIBRARY_LIB%\snappy_static.lib exit 1      # [win]
+
+about:
+  home: https://github.com/google/snappy
+  summary: A fast compressor/decompressor
+  license: BSD 3-clause
+  license_file: COPYING
+  license_family: BSD
+
+extra:
+  recipe-maintainers:
+    - groutr
+    - jakirkham
+    - wesm
+    - xhochy
+    - dougalsutherland
+    - MaxRis

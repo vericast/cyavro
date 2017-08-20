@@ -52,7 +52,9 @@ extensions = [
 ]
 
 if platform.system() == "Darwin":
-    extensions[0].sources = ["cyavro/osx/fmemopen.h", "cyavro/osx/fmemopen.c"]
+    print(extensions[0].sources)
+    extensions[0].sources.extend(["cyavro/osx/fmemopen.c"])
+    extensions[0].include_dirs.append('cyavro/osx')
 
 version = str(os.environ.get('PKG_VERSION', "0.6.2"))
 
@@ -81,7 +83,7 @@ setup(name='cyavro',
       requires=['pandas (>=0.12)',
                 'numpy (>=1.7.0)',
                 'cython (>=0.19.1)'],
-      ext_modules=cythonize(extensions, cython_gdb=True),
+      ext_modules=cythonize(extensions),
       url='https://github.com/maxpoint/cyavro',
       license='BSD',
       )
