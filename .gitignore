@@ -14,3 +14,7 @@ dist/
 .cache
 MANIFEST
 .ipynb_checkpoints/
+
+
+# generated files
+cyavro/version.py
