@@ -40,9 +40,9 @@ def _get_include(prefix):
 if 'PREFIX' in os.environ:
     print("Operating setup.py from within conda-build")
     include_dirs, library_dirs = _get_include(os.environ['PREFIX'])
-elif 'CONDA_ENV_PATH' in os.environ:
+elif 'CONDA_PREFIX' in os.environ:
     print("Operating setup.py from within a conda environment")
-    include_dirs, library_dirs = _get_include(os.environ['CONDA_ENV_PATH'])
+    include_dirs, library_dirs = _get_include(os.environ['CONDA_PREFIX'])
 else:
     include_dirs = []
     library_dirs = []
