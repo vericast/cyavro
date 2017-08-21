@@ -4,7 +4,8 @@ import numpy as np
 include_dirs = ['/usr/local/include/hdfs']
 library_dirs = ['/usr/local/lib/']
 
-prefix = os.getenv('PREFIX', None)
+prefix = os.getenv('PREFIX', os.getenv("CONDA_ENV_PATH", None))
+
 if prefix is not None:
     include_dirs.append(os.path.join(prefix, 'include'))
     library_dirs.append(os.path.join(prefix, 'lib'))

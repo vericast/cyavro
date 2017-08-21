@@ -51,19 +51,8 @@ requirements:
         - python-avro
 
 test:
-    requires:
-        - pytest
-        - python-avro
-        - cython
     imports:
         - cyavro
-    files:
-        - ../../test/basic_types.py
-        - ../../test/from_bytes_c.py
-        - ../../test/from_bytes_c_helper.pyx
-        - ../../test/from_bytes_c_helper.pyxbld
-    commands:
-        - py.test *.py
 
 about:
     license: BSD

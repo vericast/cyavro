@@ -86,3 +86,9 @@ install:
 # command to run tests, e.g. python setup.py test
 script:
   - conda build --python $PY_VERSION cyavro
+
+  # install the conda library we built
+  - conda create -n testenv --use-local python=$PY_VERSION cython cyavro pytest
+  - source activate testenv
+  - pytest -vrsx test/*.py
+
