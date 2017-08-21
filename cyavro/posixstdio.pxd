@@ -11,11 +11,6 @@ cdef extern from "stdio.h" nogil:
     FILE *popen(const char *, const char *)
     int pclose(FILE *)
 
-    # Memory streams (POSIX.2008)
-    FILE *fmemopen(void *, size_t, const char *)
-    FILE *open_memstream(char **, size_t *)
-    FILE *open_wmemstream(wchar_t **, size_t *)
-
     # Seek and tell with off_t
     int fseeko(FILE *, off_t, int)
     off_t ftello(FILE *)
@@ -32,3 +27,15 @@ cdef extern from "stdio.h" nogil:
     # Reading lines and records (POSIX.2008)
     ssize_t getline(char **, size_t *, FILE *)
     ssize_t getdelim(char **, size_t *, int, FILE *)
+
+
+IF UNAME_SYSNAME == "Linux":
+    cdef extern from "stdio.h" nogil:
+        # Memory streams (POSIX.2008)
+        FILE *fmemopen(void *, size_t, const char *)
+        FILE *open_memstream(char **, size_t *)
+        FILE *open_wmemstream(wchar_t **, size_t *)
+
+ELIF UNAME_SYSNAME == "Darwin":
+    cdef extern from "osx/fmemopen.h" nogil:
+        FILE *fmemopen(void *, size_t, const char *)

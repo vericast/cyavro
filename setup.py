@@ -22,19 +22,32 @@
 # WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-from distutils.core import setup
+from setuptools import setup
+from setuptools.extension import Extension, Library
 from Cython.Build import cythonize
-from distutils.extension import Extension
 import numpy as np
 import os
+import platform
 
 #import Cython.Compiler.Options
 #Cython.Compiler.Options.annotate = True
 
-prefix = os.getenv('PREFIX', None)
-if prefix is not None:
-    include_dirs = [os.path.join(prefix, 'include')]
-    library_dirs = [os.path.join(prefix, 'lib')]
+
+def _get_include(prefix):
+    return [os.path.join(prefix, 'include')], [os.path.join(prefix, 'lib')]
+
+
+def join_root(path):
+    return os.path.join(os.path.dirname(__file__), path)
+
+
+# This is needed by conda build
+if 'PREFIX' in os.environ:
+    print("Operating setup.py from within conda-build")
+    include_dirs, library_dirs = _get_include(os.environ['PREFIX'])
+elif 'CONDA_PREFIX' in os.environ:
+    print("Operating setup.py from within a conda environment")
+    include_dirs, library_dirs = _get_include(os.environ['CONDA_PREFIX'])
 else:
     include_dirs = []
     library_dirs = []
@@ -43,14 +56,27 @@ include_dirs.append(np.get_include())
 
 extensions = [
     Extension(
-        'cyavro._cyavro', ['cyavro/*.pyx'],
+        name='cyavro._cyavro',
+        sources=['cyavro/_cyavro.pyx'],
+        include_dirs=include_dirs,
+        library_dirs=library_dirs,
+        libraries=['avro', 'm', 'snappy'],
+    ),
+    Extension(
+        name='cyavro.test_utils',
+        sources=['cyavro/test_utils.pyx'],
         include_dirs=include_dirs,
         library_dirs=library_dirs,
         libraries=['avro', 'm', 'snappy'],
     )
 ]
 
-version = str(os.environ.get('PKG_VERSION', "0.6.2"))
+if platform.system() == "Darwin":
+    for e in extensions:
+        e.sources.append("cyavro/osx/fmemopen.c")
+        e.depends.append('cyavro/osx/fmemopen.h')
+
+version = str(os.environ.get('PKG_VERSION', "0.6.4"))
 
 
 def write_version_py():
@@ -77,7 +103,7 @@ setup(name='cyavro',
       requires=['pandas (>=0.12)',
                 'numpy (>=1.7.0)',
                 'cython (>=0.19.1)'],
-      ext_modules=cythonize(extensions, cython_gdb=True),
+      ext_modules=cythonize(extensions),
       url='https://github.com/maxpoint/cyavro',
       license='BSD',
       )

@@ -29,7 +29,6 @@ from libc.stdlib cimport malloc, free
 from libc.stdio cimport *
 from libc.string cimport memcpy
 
-import pyximport; pyximport.install()
 cimport cyavro._cyavro as cyavro
 
 

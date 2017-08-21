@@ -2,6 +2,7 @@
 *.pyc
 *.cpp
 *.c
+!cyavro/osx/fmemopen.c
 *.avro
 *.so
 *.pyxbldc
@@ -14,3 +15,8 @@ dist/
 .cache
 MANIFEST
 .ipynb_checkpoints/
+
+
+# generated files
+cyavro/version.py
+record.txt

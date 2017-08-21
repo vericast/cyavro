@@ -27,44 +27,34 @@ package:
     version: 0.6.2
 
 source:
-  path: ../..
+  path: ../../
 
 build:
     number: {{ environ.get('GIT_DESCRIBE_NUMBER', 0) }}
 
 requirements:
     build:
+        - toolchain
         - python
         - cython
         - numpy
-        - libavro
+        - avro
         - six
         - jinja2
     run:
         - python
         - numpy
-        - libavro
+        - avro
         - pandas >=0.16
         - filelock
         - six
-        - avro
+        - python-avro
 
 test:
-    requires:
-        - pytest
-        - avro
-        - cython
     imports:
         - cyavro
-    files:
-        - ../../test/basic_types.py
-        - ../../test/from_bytes_c.py
-        - ../../test/from_bytes_c_helper.pyx
-        - ../../test/from_bytes_c_helper.pyxbld
-    commands:
-        - py.test *.py
 
 about:
     license: BSD
-    summary: "Fast avro reader and writer using libavro"
+    summary: "Fast python-avro reader and writer using libavro"
     home: http://github.com/MaxPoint/cyavro
