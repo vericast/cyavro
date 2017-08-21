@@ -1,0 +1,13 @@
+diff --git snappy-test.cc snappy-test.cc
+index 01d5541..5a51128 100644
+--- snappy-test.cc
++++ snappy-test.cc
+@@ -43,7 +43,7 @@
+ 
+ #include <algorithm>
+ 
+-DEFINE_bool(run_microbenchmarks, true,
++DEFINE_bool(run_microbenchmarks, false,
+             "Run microbenchmarks before doing anything else.");
+ 
+ namespace snappy {
