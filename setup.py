@@ -60,8 +60,8 @@ extensions = [
 
 if platform.system() == "Darwin":
     print(extensions[0].sources)
-    extensions[0].sources.extend(["cyavro/osx/fmemopen.c"])
-    extensions[0].include_dirs.append('cyavro/osx')
+    extensions[0].sources.extend([os.path.abspath("cyavro/osx/fmemopen.c")])
+    extensions[0].include_dirs.append(os.path.abspath('cyavro/osx'))
 
 version = str(os.environ.get('PKG_VERSION', "0.6.2"))
 
