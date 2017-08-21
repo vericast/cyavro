@@ -57,7 +57,14 @@ include_dirs.append(np.get_include())
 extensions = [
     Extension(
         name='cyavro._cyavro',
-        sources=['cyavro/*.pyx'],
+        sources=['cyavro/_cyavro.pyx'],
+        include_dirs=include_dirs,
+        library_dirs=library_dirs,
+        libraries=['avro', 'm', 'snappy'],
+    ),
+    Extension(
+        name='cyavro.test_utils',
+        sources=['cyavro/test_utils.pyx'],
         include_dirs=include_dirs,
         library_dirs=library_dirs,
         libraries=['avro', 'm', 'snappy'],

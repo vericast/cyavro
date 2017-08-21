@@ -35,7 +35,7 @@ import pandas.util.testing as pdt
 import cyavro
 
 import pyximport; pyximport.install()
-import from_bytes_c_helper
+from cyavro.test_utils import from_bytes_c_helper
 
 import io
 
