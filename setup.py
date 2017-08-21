@@ -36,6 +36,11 @@ import platform
 def _get_include(prefix):
     return [os.path.join(prefix, 'include')], [os.path.join(prefix, 'lib')]
 
+
+def join_root(path):
+    return os.path.join(os.path.dirname(__file__), path)
+
+
 # This is needed by conda build
 if 'PREFIX' in os.environ:
     print("Operating setup.py from within conda-build")
@@ -51,7 +56,8 @@ include_dirs.append(np.get_include())
 
 extensions = [
     Extension(
-        'cyavro._cyavro', ['cyavro/*.pyx'],
+        name='cyavro._cyavro',
+        sources=['cyavro/*.pyx'],
         include_dirs=include_dirs,
         library_dirs=library_dirs,
         libraries=['avro', 'm', 'snappy'],
@@ -60,8 +66,8 @@ extensions = [
 
 if platform.system() == "Darwin":
     print(extensions[0].sources)
-    extensions[0].sources.extend([os.path.abspath("cyavro/osx/fmemopen.c")])
-    extensions[0].include_dirs.append(os.path.abspath('cyavro/osx'))
+    extensions[0].sources.append(join_root("cyavro/osx/fmemopen.c"))
+    extensions[0].depends.append(join_root('cyavro/osx/fmemopen.h'))
 
 version = str(os.environ.get('PKG_VERSION', "0.6.2"))
 

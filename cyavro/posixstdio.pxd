@@ -37,5 +37,5 @@ IF UNAME_SYSNAME == "Linux":
         FILE *open_wmemstream(wchar_t **, size_t *)
 
 ELIF UNAME_SYSNAME == "Darwin":
-    cdef extern from "fmemopen.h" nogil:
+    cdef extern from "osx/fmemopen.h" nogil:
         FILE *fmemopen(void *, size_t, const char *)
