@@ -35,7 +35,7 @@ import pandas.util.testing as pdt
 import cyavro
 
 import pyximport; pyximport.install()
-from cyavro.test_utils import from_bytes_c_helper
+from cyavro import test_utils
 
 import io
 
@@ -67,7 +67,7 @@ def prepare_file(fpath):
 def test_from_bytes():
     df_write, fpath = prepare_file('from_bytes_data.avro')
 
-    reader = from_bytes_c_helper.get_reader(fpath)
+    reader = test_utils.get_reader(fpath)
     reader.init_buffers()
     df_read = pd.DataFrame(reader.read_chunk())
 

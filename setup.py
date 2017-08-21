@@ -72,15 +72,9 @@ extensions = [
 ]
 
 if platform.system() == "Darwin":
-    extensions.insert(0, Library(
-        name='fmemopen',
-        include_dirs=include_dirs,
-        library_dirs=library_dirs,
-        sources=['cyavro/osx/fmemopen.c']
-    ))
-#     print(extensions[0].sources)
-#     extensions[0].sources.append(join_root("cyavro/osx/fmemopen.c"))
-#     extensions[0].depends.append(join_root('cyavro/osx/fmemopen.h'))
+    for e in extensions:
+        e.sources.append("cyavro/osx/fmemopen.c")
+        e.depends.append('cyavro/osx/fmemopen.h')
 
 version = str(os.environ.get('PKG_VERSION', "0.6.4"))
 
