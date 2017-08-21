@@ -290,7 +290,7 @@ def write_avro_file_from_dataframe(df, path_to_file, schema=None, codec='snappy'
     schema : string or dict, optional
         The avro schema to be written.  If a schema is not supplied it will be inferred.
     codec : string
-        The compression scheme required {'none', 'snappy', 'deflate'}.
+        The compression scheme required {'null', 'snappy', 'deflate'}.
 
     Returns
     -------
