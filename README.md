@@ -17,7 +17,7 @@ cyavro
 <tr>
   <td>License</td>
   <td>
-    <a href="https://github.com/MaxPoint/cyavro/blob/master/LICENSE.txt">
+    <a href="https://github.com/maxpoint/cyavro/blob/master/LICENSE.txt">
     <img src="https://anaconda.org/mvn/cyavro/badges/license.svg" alt="cyavro license" />
     </a>
   </td>
@@ -25,8 +25,8 @@ cyavro
 <tr>
   <td>Build Status</td>
   <td>
-    <a href="https://travis-ci.org/MaxPoint/cyavro">
-    <img src="https://travis-ci.org/MaxPoint/cyavro.svg" alt="build status" />
+    <a href="https://travis-ci.org/maxpoint/cyavro">
+    <img src="https://travis-ci.org/maxpoint/cyavro.svg" alt="build status" />
     </a>
   </td>
 </tr>
@@ -62,7 +62,7 @@ Windows is unsupported.
 The simlest way to install is via conda
 
 ```bash
-  conda install -c https://conda.anaconda.org/mvn cyavro
+  conda install -c conda-forge cyavro
 ```
 
 Building
