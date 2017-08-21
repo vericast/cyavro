@@ -85,6 +85,7 @@ script:
 
   # install the conda library we built
   - conda create -n testenv --use-local python=$PY_VERSION cython pytest pandas toolchain python-avro avro python-snappy
+  - export ARCH=64
   - source activate testenv
   - python setup.py install
   - pytest -vrsx test/*.py
