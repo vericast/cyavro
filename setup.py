@@ -64,12 +64,12 @@ extensions = [
     )
 ]
 
-if platform.system() == "Darwin":
-    print(extensions[0].sources)
-    extensions[0].sources.append(join_root("cyavro/osx/fmemopen.c"))
-    extensions[0].depends.append(join_root('cyavro/osx/fmemopen.h'))
+# if platform.system() == "Darwin":
+#     print(extensions[0].sources)
+#     extensions[0].sources.append(join_root("cyavro/osx/fmemopen.c"))
+#     extensions[0].depends.append(join_root('cyavro/osx/fmemopen.h'))
 
-version = str(os.environ.get('PKG_VERSION', "0.6.2"))
+version = str(os.environ.get('PKG_VERSION', "0.6.3"))
 
 
 def write_version_py():
