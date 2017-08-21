@@ -73,22 +73,19 @@ install:
   - conda update -n root conda-build
 
   # Make deps
-  - cd conda-recipes
-  - conda build --python $PY_VERSION python-avro
-  - conda build --python $PY_VERSION avro
-  - conda build --python $PY_VERSION python-snappy
-  - conda build --python $PY_VERSION filelock
-
-  # Install deps
-  - conda create -n test-environment python=$PY_VERSION pandas
-  - source activate test-environment
+#  - cd conda-recipes
+#  - conda build --python $PY_VERSION python-avro
+#  - conda build --python $PY_VERSION avro
+#  - conda build --python $PY_VERSION python-snappy
+#  - conda build --python $PY_VERSION filelock
 
 # command to run tests, e.g. python setup.py test
 script:
-  - conda build --python $PY_VERSION cyavro
+  #- conda build --python $PY_VERSION cyavro
 
   # install the conda library we built
-  - conda create -n testenv --use-local python=$PY_VERSION cython cyavro pytest
+  - conda create -n testenv --use-local python=$PY_VERSION cython pytest pandas toolchain python-avro avro python-snappy
   - source activate testenv
+  - python setup.py install
   - pytest -vrsx test/*.py
 
