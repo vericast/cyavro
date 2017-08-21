@@ -2,6 +2,7 @@
 *.pyc
 *.cpp
 *.c
+!cyavro/osx/fmemopen.c
 *.avro
 *.so
 *.pyxbldc
@@ -18,3 +19,4 @@ MANIFEST
 
 # generated files
 cyavro/version.py
+record.txt

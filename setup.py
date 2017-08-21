@@ -23,8 +23,8 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 from setuptools import setup
+from setuptools.extension import Extension, Library
 from Cython.Build import cythonize
-from distutils.extension import Extension
 import numpy as np
 import os
 import platform
@@ -71,12 +71,18 @@ extensions = [
     )
 ]
 
-# if platform.system() == "Darwin":
+if platform.system() == "Darwin":
+    extensions.insert(0, Library(
+        name='fmemopen',
+        include_dirs=include_dirs,
+        library_dirs=library_dirs,
+        sources=['cyavro/osx/fmemopen.c']
+    ))
 #     print(extensions[0].sources)
 #     extensions[0].sources.append(join_root("cyavro/osx/fmemopen.c"))
 #     extensions[0].depends.append(join_root('cyavro/osx/fmemopen.h'))
 
-version = str(os.environ.get('PKG_VERSION', "0.6.3"))
+version = str(os.environ.get('PKG_VERSION', "0.6.4"))
 
 
 def write_version_py():
