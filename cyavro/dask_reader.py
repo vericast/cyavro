@@ -124,8 +124,8 @@ def scan_blocks(fo, header, file_size):
     nrows = header['first_block_count']
     while True:
         off0 = data + bytes
-        if off + SYNC_SIZE >= file_size:
-            return
+        if off0 + SYNC_SIZE >= file_size:
+            break
         fo.seek(off0)
         assert fo.read(SYNC_SIZE) == header['sync'], "Sync failed"
         off = fo.tell()
