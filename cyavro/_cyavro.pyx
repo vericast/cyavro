@@ -192,6 +192,47 @@ cdef class AvroReader(object):
         self._reader = filereader
         self.initialized = True
 
+    def read_chunk_assigned(self, int num, list arrays):
+        cdef:
+            avro_value_t record
+            avro_file_reader_t filereader = self._reader
+            size_t counter = 0
+            avro_schema_t wschema
+            avro_value_iface_t *iface
+            np.ndarray the_array
+
+        self.buffer_lst = []
+        for the_array in arrays:
+            self.buffer_lst.append(the_array)
+
+        if not self.initialized:
+            raise Exception("Reader not initialized")
+
+        # If the file contains nothing: do nothing.
+        if self.empty_file:
+            return
+
+        wschema = avro_file_reader_get_writer_schema(filereader)
+        iface = avro_generic_class_from_schema(wschema)
+        avro_generic_value_new(iface, &record)
+
+        while True:
+            rval = avro_file_reader_read_value(filereader, &record)
+            if rval != 0:
+                break
+            # decompose record into Python types
+            read_record(record, arrays, counter)
+            avro_value_reset(&record)
+            counter += 1
+            if counter == num:
+                break
+
+        # Reference count cleanup
+        avro_value_decref(&record)
+        avro_value_iface_decref(iface)
+        avro_schema_decref(wschema)
+
+
     def init_buffers(self, size_t chunk_size=0):
         """Initialize the buffers for the reader object.  This must be called before calling :meth:`read_chunk`
 

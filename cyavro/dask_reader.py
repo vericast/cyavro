@@ -3,6 +3,7 @@ from collections import OrderedDict
 import io
 import json
 import numpy as np
+import pandas as pd
 
 from dask.bytes.utils import seek_delimiter
 from dask.bytes.core import get_fs_paths_myopen
@@ -66,7 +67,7 @@ def map_types(header, schema):
     header['dtypes'] = types
 
 
-def read_header(fo, file_size=0):
+def read_header(fo):
     """Extract an avro file's header
 
     fo: file-like
@@ -90,6 +91,8 @@ def read_header(fo, file_size=0):
             meta[key] = val
     out['sync'] = fo.read(SYNC_SIZE)
     out['header_size'] = fo.tell()
+    fo.seek(0)
+    out['head_bytes'] = fo.read(out['header_size'])
     peek_first_block(fo, out)
     return out
 
@@ -171,8 +174,38 @@ def read_avro(urlpath, block_finder='auto', blocksize=100000000,
                          " 'none'], got %s" % block_finder)
     fs, paths, myopen = get_fs_paths_myopen(urlpath, None, 'rb', None, **kwargs)
     chunks = []
+    head = None
+    read = delayed(read_avro_bytes)
     for path in paths:
+        if head is None:
+            # sample first file
+            with myopen(path, 'rb') as f:
+                head = read_header(f)
         size = fs.size(path)
+        b_to_s = blocksize / size
+        if block_finder == 'scan' or (block_finder == 'auto' and b_to_s > 0.2):
+            with myopen(path, 'rb') as f:
+                head['blocks'] = []
+                scan_blocks(f, head, size)
+                # pick blocks ~blocksize apart, append to chunks
+        elif block_finder == 'none':
+            chunks.append(read(path, myopen, head['header_size'], size, head,
+                               head['head_bytes']))
+        else:
+            # block case
+            loc0 = head['header_size']
+            with myopen(path, 'rb') as f:
+                while True:
+                    f.seek(blocksize, 1)
+                    if f.tell() >= size:
+                        break
+                    seek_delimiter(f, head['sync'])
+                    loc = f.tell()
+                    chunks.append(read(path, myopen, loc0, loc - loc0,
+                                       head, head['head_bytes']))
+                    loc0 = loc
+    return from_delayed(chunks, meta=head['dtypes'],
+                        divisions=[None] * (len(chunks) + 1))
 
 
 def read_avro_bytes(URL, open_with, start_byte, length, header, head_bytes,
@@ -190,11 +223,14 @@ def read_avro_bytes(URL, open_with, start_byte, length, header, head_bytes,
         b = io.BytesIO(data)
         header['blocks'] = []
         scan_blocks(b, header, len(data))
+        nrows = sum(b['nrows'] for b in header['blocks'])
     f = cyavro.AvroReader()
     f.init_bytes(data)
-    # we want alternate function that takes preallocated dataframe in.
-    # df = empty(header['types'], header['nrows'], cols=header['cols'])
+    df, arrs = empty(header['dtypes'].values(), nrows, cols=header['dtypes'])
     f.init_reader()
-    f.init_buffers(nrows)
-    df = f.read_chunk()
+    f.init_buffers(10000)
+    for i in range(0, nrows, 10000):
+        d = f.read_chunk()
+        for c in d:
+            df.loc[i:i+10000-1, c] = d[c]
     return df
