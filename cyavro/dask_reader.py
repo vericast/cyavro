@@ -182,35 +182,46 @@ def read_avro(urlpath, block_finder='auto', blocksize=100000000,
             with myopen(path, 'rb') as f:
                 head = read_header(f)
         size = fs.size(path)
-        b_to_s = blocksize / size
-        if block_finder == 'scan' or (block_finder == 'auto' and b_to_s > 0.2):
+        b_to_s = blocksize / head['first_block_bytes']
+        if block_finder == 'scan' or (block_finder == 'auto' and b_to_s < 0.2):
+            # hop through file pick blocks ~blocksize apart, append to chunks
             with myopen(path, 'rb') as f:
                 head['blocks'] = []
                 scan_blocks(f, head, size)
-                # pick blocks ~blocksize apart, append to chunks
+            loc0 = head['header_size']
+            loc = loc0
+            nrows = 0
+            for o in head['blocks']:
+                loc += o['size'] + SYNC_SIZE
+                nrows += o['nrows']
+                if loc - loc0 > blocksize:
+                    chunks.append(read(path, myopen, loc0, loc - loc0, head,
+                                       nrows=nrows))
+                    loc0 = loc
+                    nrows = 0
+            chunks.append(read(path, myopen, loc0, size - loc0, head,
+                               nrows=nrows))
         elif block_finder == 'none':
-            chunks.append(read(path, myopen, head['header_size'], size, head,
-                               head['head_bytes']))
+            # one chunk per file
+            chunks.append(read(path, myopen, head['header_size'], size, head))
         else:
-            # block case
+            # block-seek case: find sync markers
             loc0 = head['header_size']
             with myopen(path, 'rb') as f:
                 while True:
                     f.seek(blocksize, 1)
+                    seek_delimiter(f, head['sync'], head['first_block_bytes']*4)
+                    loc = f.tell()
+                    chunks.append(read(path, myopen, loc0, loc - loc0, head))
                     if f.tell() >= size:
                         break
-                    seek_delimiter(f, head['sync'])
-                    loc = f.tell()
-                    chunks.append(read(path, myopen, loc0, loc - loc0,
-                                       head, head['head_bytes']))
                     loc0 = loc
     return from_delayed(chunks, meta=head['dtypes'],
                         divisions=[None] * (len(chunks) + 1))
 
 
-def read_avro_bytes(URL, open_with, start_byte, length, header, head_bytes,
-                    nrows=None):
-    """Pass a specific file/bytechunk and convert to daatframe with cyavro
+def read_avro_bytes(URL, open_with, start_byte, length, header, nrows=None):
+    """Pass a specific file/bytechunk and convert to dataframe with cyavro
 
     Both a python dict version of the header, and the original bytes that
     define it, are required. The bytes are prepended to the data, so that the
@@ -218,7 +229,7 @@ def read_avro_bytes(URL, open_with, start_byte, length, header, head_bytes,
     """
     with open_with(URL) as f:
         f.seek(start_byte)
-        data = head_bytes + f.read(length)
+        data = header['head_bytes'] + f.read(length)
     if nrows is None:
         b = io.BytesIO(data)
         header['blocks'] = []
