@@ -188,10 +188,12 @@ def read_avro(urlpath, block_finder='auto', blocksize=100000000,
             with myopen(path, 'rb') as f:
                 head['blocks'] = []
                 scan_blocks(f, head, size)
+            blocks = head['blocks']
+            head['blocks'] = []
             loc0 = head['header_size']
             loc = loc0
             nrows = 0
-            for o in head['blocks']:
+            for o in blocks:
                 loc += o['size'] + SYNC_SIZE
                 nrows += o['nrows']
                 if loc - loc0 > blocksize:
