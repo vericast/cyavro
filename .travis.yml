@@ -28,6 +28,11 @@ language: python
 
 sudo: false
 
+env:
+  global:`
+     - secure: "DeidOowgRT9gzK/kEBjEHRkLdHi4lWTykSLcDlW/MEFSM2mekB12MPSY4gQiF1+lrwXkitnJfpdvIqWrNRKq/K6uwPO3NRFUXOQm/2f/RCONsnS4BedPw4C4ptU+xeB/S7rhp8ztgQWoJkP0etu37/iJ5AUSOuVviayT28n8OrEWPBz5bqn1WuQ1G6YNMpojOX6/HxE8OG1oGpPbxhBx585Q4OOZy1CWSRLrboI8RQh1ymF/sBAHLEC91w5Ixw4qzjpasHG+6Yx1aYPCd2OilSik1L1ORNWDtC3bKFIoK20EwiMEYXjxPdqOWiEAgy2UbzcdMCBVFRQguQ8vst7LOkEN89gpCMbQJLpNS0bHiDy2yE7aNfAUMxDP1yOiGIvUlg4a+olTv4CtgPDE1lZO6GV0GxtggDpUcNx0qOOd57pTjPmheGWbI1VYetOHv8O85uil6d8uRGddEJZ5TltoYyTZ8M4RPa7vJciMX0kkEAg6l6I5FqpnlxuHB/XX8F8AuWAhFieQve8ayw2vfR2gsArau0pOxulAFuvSgxzsz7y8gKIcmME3vXBquqLX8FIAWKhP/9StHdje0M7GHPNv1A4FrJN9tdUePrX4CTN8o6vvcUwoORa3czDl/4trNOwqUdjHMLNs1U0ZaiSFYHVOVT+x9j9887KUcyosT+0vUKc="
+
+
 matrix:
   include:
     - language: objective-c
@@ -60,6 +65,7 @@ matrix:
       env:
         - OSNAME="Linux"
         - PY_VERSION="3.6"
+        - DOCTR="1"
 
 # command to install dependencies, e.g. pip install -r requirements.txt --use-mirrors
 install:
@@ -72,13 +78,6 @@ install:
   - conda install conda-build
   - conda update -n root conda-build
 
-  # Make deps
-#  - cd conda-recipes
-#  - conda build --python $PY_VERSION python-avro
-#  - conda build --python $PY_VERSION avro
-#  - conda build --python $PY_VERSION python-snappy
-#  - conda build --python $PY_VERSION filelock
-
 # command to run tests, e.g. python setup.py test
 script:
   #- conda build --python $PY_VERSION cyavro
@@ -89,4 +88,11 @@ script:
   - source activate testenv
   - python setup.py install
   - pytest -vrsx test/*.py
-
+  # docs stuff
+  - 'if [ ${DOCTR} = "1" ]; then
+      pip install doctr
+      pushd docs
+      make html
+      popd
+      doctr deploy . --built-docs docs/_build/html
+    fi'
