@@ -1,0 +1,6 @@
+cyavro\.AvroReader\.close
+=========================
+
+.. currentmodule:: cyavro
+
+.. automethod:: AvroReader.close

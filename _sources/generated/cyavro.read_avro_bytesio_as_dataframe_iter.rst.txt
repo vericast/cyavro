@@ -1,0 +1,6 @@
+cyavro\.read\_avro\_bytesio\_as\_dataframe\_iter
+================================================
+
+.. currentmodule:: cyavro
+
+.. autofunction:: read_avro_bytesio_as_dataframe_iter

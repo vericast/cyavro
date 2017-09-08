@@ -1,0 +1,6 @@
+cyavro\.AvroWriter\.close
+=========================
+
+.. currentmodule:: cyavro
+
+.. automethod:: AvroWriter.close

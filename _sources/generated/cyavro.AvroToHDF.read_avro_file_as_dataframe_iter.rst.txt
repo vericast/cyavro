@@ -1,0 +1,6 @@
+cyavro\.AvroToHDF\.read\_avro\_file\_as\_dataframe\_iter
+========================================================
+
+.. currentmodule:: cyavro
+
+.. automethod:: AvroToHDF.read_avro_file_as_dataframe_iter

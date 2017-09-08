@@ -1,0 +1,6 @@
+cyavro\.AvroReader\.init\_reader
+================================
+
+.. currentmodule:: cyavro
+
+.. automethod:: AvroReader.init_reader

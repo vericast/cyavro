@@ -1,0 +1,6 @@
+cyavro\.infer\_avro\_schema\_for\_dataframe
+===========================================
+
+.. currentmodule:: cyavro
+
+.. autofunction:: infer_avro_schema_for_dataframe

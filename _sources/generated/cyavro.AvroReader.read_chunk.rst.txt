@@ -1,0 +1,6 @@
+cyavro\.AvroReader\.read\_chunk
+===============================
+
+.. currentmodule:: cyavro
+
+.. automethod:: AvroReader.read_chunk

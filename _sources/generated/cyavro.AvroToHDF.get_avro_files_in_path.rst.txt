@@ -1,0 +1,6 @@
+cyavro\.AvroToHDF\.get\_avro\_files\_in\_path
+=============================================
+
+.. currentmodule:: cyavro
+
+.. automethod:: AvroToHDF.get_avro_files_in_path

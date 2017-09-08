@@ -1,0 +1,6 @@
+cyavro\.AvroReader\.init\_bytes
+===============================
+
+.. currentmodule:: cyavro
+
+.. automethod:: AvroReader.init_bytes

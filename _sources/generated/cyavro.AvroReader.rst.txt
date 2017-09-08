@@ -1,0 +1,27 @@
+cyavro.AvroReader
+=================
+
+.. currentmodule:: cyavro
+
+.. autoclass:: AvroReader
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      ~AvroReader.close
+      ~AvroReader.init_buffers
+      ~AvroReader.init_bytes
+      ~AvroReader.init_file
+      ~AvroReader.init_reader
+      ~AvroReader.read_chunk
+   
+   
+
+   
+   
+   

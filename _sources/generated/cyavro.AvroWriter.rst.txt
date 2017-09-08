@@ -1,0 +1,23 @@
+cyavro.AvroWriter
+=================
+
+.. currentmodule:: cyavro
+
+.. autoclass:: AvroWriter
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      ~AvroWriter.close
+      ~AvroWriter.write
+   
+   
+
+   
+   
+   

@@ -1,0 +1,6 @@
+cyavro\.avro\_path\_to\_hdf5
+============================
+
+.. currentmodule:: cyavro
+
+.. autodata:: avro_path_to_hdf5

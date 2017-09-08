@@ -1,0 +1,322 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>cyavro &mdash; cyavro 0.6.4 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="cyavro 0.6.4 documentation" href="#"/>
+        <link rel="next" title="cyavro public API" href="cyavro_api.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="#" class="icon icon-home"> cyavro
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.6.4
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="cyavro_api.html">cyavro public API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Extender API Reference</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">cyavro</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>cyavro</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="cyavro">
+<h1>cyavro<a class="headerlink" href="#cyavro" title="Permalink to this headline">¶</a></h1>
+<p>..raw:: html</p>
+<blockquote>
+<div><p>&lt;table&gt;
+&lt;tr&gt;</p>
+<blockquote>
+<div>&lt;td&gt;Latest Release&lt;/td&gt;
+&lt;td&gt;&lt;img src=”<a class="reference external" href="https://img.shields.io/pypi/v/cyavro.svg">https://img.shields.io/pypi/v/cyavro.svg</a>” alt=”latest release” /&gt;&lt;/td&gt;</div></blockquote>
+<p>&lt;/tr&gt;
+&lt;tr&gt;</p>
+<blockquote>
+<div><p>&lt;td&gt;License&lt;/td&gt;
+&lt;td&gt;</p>
+<blockquote>
+<div>&lt;a href=”<a class="reference external" href="https://github.com/bokeh/bokeh/blob/master/LICENSE.txt">https://github.com/bokeh/bokeh/blob/master/LICENSE.txt</a>”&gt;
+&lt;img src=”<a class="reference external" href="https://img.shields.io/github/license/MaxPoint/cyavro.svg">https://img.shields.io/github/license/MaxPoint/cyavro.svg</a>” alt=”Bokeh license” /&gt;
+&lt;/a&gt;</div></blockquote>
+<p>&lt;/td&gt;</p>
+</div></blockquote>
+<p>&lt;/tr&gt;
+&lt;tr&gt;</p>
+<blockquote>
+<div><p>&lt;td&gt;Build Status&lt;/td&gt;
+&lt;td&gt;</p>
+<blockquote>
+<div>&lt;a href=”<a class="reference external" href="https://travis-ci.org/MaxPoint/cyavro">https://travis-ci.org/MaxPoint/cyavro</a>”&gt;
+&lt;img src=”<a class="reference external" href="https://travis-ci.org/MaxPoint/cyavro.svg">https://travis-ci.org/MaxPoint/cyavro.svg</a>” alt=”build status” /&gt;
+&lt;/a&gt;</div></blockquote>
+<p>&lt;/td&gt;</p>
+</div></blockquote>
+<p>&lt;/tr&gt;
+&lt;tr&gt;</p>
+<blockquote>
+<div><p>&lt;td&gt;PyPI&lt;/td&gt;
+&lt;td&gt;</p>
+<blockquote>
+<div>&lt;a href=”<a class="reference external" href="https://pypi.python.org/pypi/cyavro/">https://pypi.python.org/pypi/cyavro/</a>”&gt;
+&lt;img src=”<a class="reference external" href="https://img.shields.io/pypi/dm/cyavro.svg">https://img.shields.io/pypi/dm/cyavro.svg</a>” alt=”pypi downloads” /&gt;
+&lt;/a&gt;</div></blockquote>
+<p>&lt;/td&gt;</p>
+</div></blockquote>
+<p>&lt;/tr&gt;
+&lt;/table&gt;</p>
+</div></blockquote>
+<p>This package provides a substantial speed improvement when reading and writing avro files over the
+pure python implementation</p>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>Installing cyavro requires several c libraries to be present.  The simplest way to build and install cyavro
+is by using the conda recipes provided.  Building these should work on linux and mac.
+Windows is unsupported.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">cd</span> conda-recipes
+conda build cyavro
+</pre></div>
+</div>
+</div>
+<div class="section" id="simple-usage">
+<h2>Simple Usage<a class="headerlink" href="#simple-usage" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cyavro</span>
+<span class="n">cyavro</span><span class="o">.</span><span class="n">read_avro_file_as_dataframe</span><span class="p">(</span><span class="s2">&quot;/path/to/somefile.avro&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="contents">
+<h1>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cyavro_api.html">cyavro public API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cyavro_api.html#reading-single-avro-files">Reading Single Avro Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cyavro_api.html#reading-paths-containing-avro-files">Reading Paths containing Avro Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cyavro_api.html#reading-file-like-objects">Reading file-like objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cyavro_api.html#conversion-utilities">Conversion Utilities</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Extender API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="generated/cyavro.AvroReader.html">cyavro.AvroReader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cyavro.AvroWriter.html">cyavro.AvroWriter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cyavro.AvroToHDF.html">cyavro.AvroToHDF</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
+<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
+<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
+</ul>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="cyavro_api.html" class="btn btn-neutral float-right" title="cyavro public API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright MaxPoint Interactive.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.6.4',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

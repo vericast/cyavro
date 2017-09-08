@@ -1,0 +1,6 @@
+cyavro\.AvroToHDF\.avro\_path\_to\_hdf5
+=======================================
+
+.. currentmodule:: cyavro
+
+.. automethod:: AvroToHDF.avro_path_to_hdf5

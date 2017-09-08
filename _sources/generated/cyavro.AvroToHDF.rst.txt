@@ -1,0 +1,26 @@
+cyavro.AvroToHDF
+================
+
+.. currentmodule:: cyavro
+
+.. autoclass:: AvroToHDF
+
+   
+
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :toctree:
+   
+      ~AvroToHDF.avro_file_to_hdf5
+      ~AvroToHDF.avro_path_to_hdf5
+      ~AvroToHDF.convert_df_to_hdf5
+      ~AvroToHDF.get_avro_files_in_path
+      ~AvroToHDF.read_avro_file_as_dataframe_iter
+   
+   
+
+   
+   
+   

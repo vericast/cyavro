@@ -1,0 +1,6 @@
+cyavro\.read\_avro\_path\_as\_dataframe\_iter
+=============================================
+
+.. currentmodule:: cyavro
+
+.. autofunction:: read_avro_path_as_dataframe_iter
