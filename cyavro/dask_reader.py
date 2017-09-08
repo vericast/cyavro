@@ -53,14 +53,18 @@ def map_types(header, schema):
     types = OrderedDict()
     for entry in schema['fields']:
         # should bother with root record's name and namespace?
+        if isinstance(entry['type'], dict):
+            entry['type'] = entry['type']['type']
         if 'logicalType' in entry:
             lt = entry['logicalType']
             if lt == 'decimal':
                 t = np.dtype('float64')
-            elif lt.startswith('time-') or lt =='duration':
+            elif lt.startswith('time-'):
                 t = np.dtype('timedelta64')
             elif lt.startswith('timestamp-') or lt == 'date':
                 t = np.dtype('datetime64')
+            elif lt == 'duration':
+                t = np.dtype("O")  # three-element tuples/arrays
         else:
             t = typemap.get(entry['type'], np.dtype("O"))
         types[entry['name']] = t
@@ -88,6 +92,7 @@ def read_header(fo):
             if key == 'avro.schema':
                 val = json.loads(val.decode('utf8'))
                 map_types(out, val)
+                out['schema'] = val
             meta[key] = val
     out['sync'] = fo.read(SYNC_SIZE)
     out['header_size'] = fo.tell()
@@ -222,6 +227,29 @@ def read_avro(urlpath, block_finder='auto', blocksize=100000000,
                         divisions=[None] * (len(chunks) + 1))
 
 
+def time_convert(arr, s):
+    lt = s['logicalType']
+    if lt == 'time-millis':
+        # primitive type is int32, so convert to int64
+        return (arr * 1000000).view('timedelta64[ns]')
+    if lt == 'time-micros':
+        arr *= 1000
+        return arr.view('timedelta64[ns]')
+    if lt == 'timestamp-millis':
+        arr *= 1000000
+        return arr.view('datetime64[ns]')
+    if lt == 'timestamp-micros':
+        arr *= 1000
+        return arr.view('datetime[ns]')
+    if lt == 'date':
+        # primitive type is int32, so convert to int64
+        return (arr * 3600000000 * 24).view('datetime64[ns]')
+    if lt == 'duration':
+        # 3 x 4-byte values
+        return arr.view('<u4').reshape((len(arr), -1))
+    raise ValueError('Logical type %s not understood' % lt)
+
+
 def read_avro_bytes(URL, open_with, start_byte, length, header, nrows=None):
     """Pass a specific file/bytechunk and convert to dataframe with cyavro
 
@@ -245,5 +273,9 @@ def read_avro_bytes(URL, open_with, start_byte, length, header, nrows=None):
     for i in range(0, nrows, 10000):
         d = f.read_chunk()
         for c in d:
-            df.loc[i:i+10000-1, c] = d[c]
+            s = [f for f in header['schema']['fields'] if f['name'] == c][0]
+            if 'logicalType' in s:
+                df.loc[i:i + 10000 - 1, c] = time_convert(d[c], s)
+            else:
+                df.loc[i:i+10000-1, c] = d[c]
     return df

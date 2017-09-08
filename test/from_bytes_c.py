@@ -25,6 +25,7 @@
 """
 Tests the `reader_from_bytes_c` cython exposed function
 """
+import io
 import os
 import tempfile
 
@@ -34,11 +35,9 @@ import pandas.util.testing as pdt
 
 import cyavro
 
-import pyximport; pyximport.install()
+import pyximport
+pyximport.install()
 from cyavro import test_utils
-
-import io
-
 
 avroschema = """ {"type": "record",
 "name": "from_bytes_test",
@@ -49,6 +48,7 @@ avroschema = """ {"type": "record",
 }
 """
 
+
 def prepare_file(fpath):
     tmpdir = tempfile.gettempdir()
     fpath = os.path.join(fpath)
@@ -58,11 +58,13 @@ def prepare_file(fpath):
     ids = np.arange(10)
     names = pdt.rands_array(10, 10)
     df_write = pd.DataFrame({"id": ids, "name": names})
-    df_write = cyavro.prepare_pandas_df_for_write(df_write, avroschema, copy=False)
+    df_write = cyavro.prepare_pandas_df_for_write(df_write, avroschema,
+                                                  copy=False)
 
     writer.write(df_write)
     writer.close()
     return df_write, fpath
+
 
 def test_from_bytes():
     df_write, fpath = prepare_file('from_bytes_data.avro')
@@ -89,6 +91,7 @@ def test_from_bytes_python():
 
     pdt.assert_frame_equal(df_write, df_read)
     reader.close()
+
 
 def test_from_byesio():
     df_write, fpath = prepare_file('from_bytes_data_py.avro')
