@@ -85,7 +85,7 @@ script:
   # docs stuff
   - |
     if [[ "${DOCTR}" == "1" ]]; then
-      conda install -n testenv sphinx numpydoc doctr sphinx-rtd-theme;
+      conda install -n testenv sphinx numpydoc doctr sphinx_rtd_theme;
       pushd doc;
       make html;
       popd;
