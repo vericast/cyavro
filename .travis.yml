@@ -88,10 +88,11 @@ script:
   - python setup.py install
   - pytest -vrsx test/*.py
   # docs stuff
-  - 'if [ "${DOCTR}" == "1" ]; then
-      pip install doctr
-      pushd docs
-      make html
-      popd
-      doctr deploy . --built-docs docs/_build/html
-    fi'
+  - |
+    if [[ "${DOCTR}" == "1" ]]; then
+      pip install doctr;
+      pushd docs;
+      make html;
+      popd;
+      doctr deploy . --built-docs docs/_build/html;
+    fi
