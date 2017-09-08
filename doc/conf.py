@@ -52,8 +52,6 @@ import sys, os
 extensions = ['sphinx.ext.autodoc',
               'sphinx.ext.doctest',
               'sphinx.ext.intersphinx',
-              'sphinx.ext.pngmath',
-              'sphinx.ext.mathjax',
               'numpydoc',
               'sphinx.ext.autosummary',
               ]
@@ -73,7 +71,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'cyavro'
-copyright = u'2015, MaxPoint Interactive'
+copyright = u'MaxPoint Interactive'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
