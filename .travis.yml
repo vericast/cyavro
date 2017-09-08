@@ -76,8 +76,6 @@ install:
 
 # command to run tests, e.g. python setup.py test
 script:
-  #- conda build --python $PY_VERSION cyavro
-
   # install the conda library we built
   - conda create -n testenv --use-local python=$PY_VERSION cython pytest pandas toolchain python-avro avro python-snappy filelock
   - export ARCH=64
@@ -91,5 +89,5 @@ script:
       pushd doc;
       make html;
       popd;
-      doctr deploy . --built-docs docs/_build/html;
+      python -m doctr deploy . --built-docs docs/_build/html;
     fi
