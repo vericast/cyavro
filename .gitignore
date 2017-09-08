@@ -20,3 +20,8 @@ MANIFEST
 # generated files
 cyavro/version.py
 record.txt
+
+# docs
+doc/generated
+doc/_html
+doc/_build

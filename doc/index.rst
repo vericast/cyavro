@@ -59,6 +59,7 @@ Simple Usage
 ------------
 
 .. code-block:: python
+
     import cyavro
     cyavro.read_avro_file_as_dataframe("/path/to/somefile.avro")
 
