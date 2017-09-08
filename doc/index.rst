@@ -6,7 +6,7 @@
 cyavro
 ======
 
-..raw:: html
+.. raw:: html
 
    <table>
    <tr>
@@ -16,16 +16,16 @@ cyavro
    <tr>
      <td>License</td>
      <td>
-       <a href="https://github.com/bokeh/bokeh/blob/master/LICENSE.txt">
-       <img src="https://img.shields.io/github/license/MaxPoint/cyavro.svg" alt="Bokeh license" />
+       <a href="https://github.com/maxpoint/cyavro/blob/master/LICENSE.txt">
+       <img src="https://img.shields.io/github/license/maxpoint/cyavro.svg" alt="Bokeh license" />
        </a>
      </td>
    </tr>
    <tr>
      <td>Build Status</td>
      <td>
-       <a href="https://travis-ci.org/MaxPoint/cyavro">
-       <img src="https://travis-ci.org/MaxPoint/cyavro.svg" alt="build status" />
+       <a href="https://travis-ci.org/maxpoint/cyavro">
+       <img src="https://travis-ci.org/maxpoint/cyavro.svg" alt="build status" />
        </a>
      </td>
    </tr>
