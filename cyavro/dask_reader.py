@@ -188,7 +188,11 @@ def read_avro(urlpath, block_finder='auto', blocksize=100000000,
                 head = read_header(f)
         size = fs.size(path)
         b_to_s = blocksize / head['first_block_bytes']
-        if block_finder == 'scan' or (block_finder == 'auto' and b_to_s < 0.2):
+        if (block_finder == 'none' or blocksize > 0.9 * size or
+                head['first_block_bytes'] > 0.9 * size):
+            # one chunk per file
+            chunks.append(read(path, myopen, 0, size, None))
+        elif block_finder == 'scan' or (block_finder == 'auto' and b_to_s < 0.2):
             # hop through file pick blocks ~blocksize apart, append to chunks
             with myopen(path, 'rb') as f:
                 head['blocks'] = []
@@ -208,9 +212,6 @@ def read_avro(urlpath, block_finder='auto', blocksize=100000000,
                     nrows = 0
             chunks.append(read(path, myopen, loc0, size - loc0, head,
                                nrows=nrows))
-        elif block_finder == 'none':
-            # one chunk per file
-            chunks.append(read(path, myopen, head['header_size'], size, head))
         else:
             # block-seek case: find sync markers
             loc0 = head['header_size']
@@ -257,8 +258,11 @@ def read_avro_bytes(URL, open_with, start_byte, length, header, nrows=None):
     define it, are required. The bytes are prepended to the data, so that the
     C avro reader can interpret them.
     """
-    with open_with(URL) as f:
+    with open_with(URL, 'rb') as f:
         f.seek(start_byte)
+        if start_byte == 0:
+            header = read_header(f)
+            f.seek(header['header_size'])
         data = header['head_bytes'] + f.read(length)
     if nrows is None:
         b = io.BytesIO(data)
