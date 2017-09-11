@@ -38,9 +38,9 @@ from filelock import FileLock
 import six
 import json
 try:
-    from version import version as __version__
+    from cyavro.version import version as __version__
 except ImportError:
-    pass
+    __version__ = 'unknown'
 
 
 DEFAULT_BUFFER_SIZE = 50000
