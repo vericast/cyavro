@@ -45,23 +45,36 @@ pure python implementation
 
 Installation
 ------------
-Installing cyavro requires several c libraries to be present.  The simplest way to build and install cyavro
-is by using the conda recipes provided.  Building these should work on linux and mac.
-Windows is unsupported.
+Installing cyavro requires several c libraries to be present.  The simplest way install cyavro
+is via conda (for linux and osx):
 
 
 .. code-block:: bash
 
-    cd conda-recipes
-    conda build cyavro
+    conda install cyavro -c conda-forge
 
 Simple Usage
 ------------
+Read file into one Pandas dataframe:
 
 .. code-block:: python
-    import cyavro
-    cyavro.read_avro_file_as_dataframe("/path/to/somefile.avro")
+    df = cyavro.read_avro_file_as_dataframe("/path/to/somefile.avro")
 
+Iterate over chunks of a file:
+
+.. code-block:: python
+    it = cyavro.read_avro_file_as_dataframe_iter("/path/to/somefile.avro")
+    for df in it:
+        work_on(df)
+
+Read file to `dask.dataframe`_  (URL can be glob string and include various
+protocols such as s3:, gcs:). This feature is experimental.
+
+.. code-block:: python
+    from cython import dask_reader
+    df = dask_reader.read_avro('s3://mybucket/path/files.*.avro')
+
+.. _dask.dataframe: http://dask.pydata.org/en/latest/dataframe-api.html
 
 Contents
 ========
