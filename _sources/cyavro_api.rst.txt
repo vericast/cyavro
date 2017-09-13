@@ -50,3 +50,14 @@ Conversion Utilities
     infer_avro_schema_for_dataframe
     avro_file_to_hdf5
     avro_path_to_hdf5
+
+Dask integration
+----------------
+
+.. currentmodule:: cyavro.dask_reader
+    :toctree: generated/
+
+    read_header
+    scan_blocks
+    read_avro_bytes
+    read_avro
