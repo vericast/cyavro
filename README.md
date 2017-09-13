@@ -41,8 +41,8 @@ cyavro
 <tr>
   <td>Documentation</td>
   <td>
-    <a href="https://cyavro.readthedocs.org">
-    cyavro.readthedocs.org
+    <a href="https://maxpoint.github.io/cyavro/">
+    maxpoint.github.io/cyavro/
     </a>
   </td>
 </tr>
