@@ -76,7 +76,7 @@ if platform.system() == "Darwin":
         e.sources.append("cyavro/osx/fmemopen.c")
         e.depends.append('cyavro/osx/fmemopen.h')
 
-version = str(os.environ.get('PKG_VERSION', "0.6.4"))
+version = str(os.environ.get('PKG_VERSION', "0.7.0"))
 
 
 def write_version_py():
@@ -95,11 +95,11 @@ setup(name='cyavro',
       version=version,
       packages=['cyavro'],
       package_data={'cyavro': ['_cyavro.c', '*.pyx', '*.pxd']},
-      description='Wrapper to avro-c-1.7.5',
+      description='Wrapper to avro-c-1.7+',
       maintainer='MaxPoint Interactive',
-      maintainer_email='marius.vanniekerk@maxpoint.com',
+      maintainer_email='marius.v.niekerk@gmail.com',
       author='MaxPoint Interactive',
-      author_email='marius.vanniekerk@maxpoint.com',
+      author_email='marius.v.niekerk@gmail.com',
       requires=['pandas (>=0.12)',
                 'numpy (>=1.7.0)',
                 'cython (>=0.19.1)'],
