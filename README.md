@@ -27,14 +27,6 @@ cyavro
   </td>
 </tr>
 <tr>
-  <td>PyPI</td>
-  <td>
-    <a href="https://pypi.python.org/pypi/cyavro/">
-    <img src="https://img.shields.io/pypi/dm/cyavro.svg" alt="pypi downloads" />
-    </a>
-  </td>
-</tr>
-<tr>
   <td>Documentation</td>
   <td>
     <a href="https://maxpoint.github.io/cyavro/">
