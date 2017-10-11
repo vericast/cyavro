@@ -279,7 +279,7 @@ def read_avro_bytes(URL, open_with, start_byte, length, header, nrows=None):
         for c in d:
             s = [f for f in header['schema']['fields'] if f['name'] == c][0]
             if 'logicalType' in s:
-                df.loc[i:i + 10000 - 1, c] = time_convert(d[c], s)
+                df[c].values[i:i + 10000] = time_convert(d[c], s)
             else:
-                df.loc[i:i+10000-1, c] = d[c]
+                df[c].values[i:i + 10000] = d[c]
     return df
