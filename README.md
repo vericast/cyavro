@@ -16,7 +16,7 @@ cyavro
 <tr>
   <td>License</td>
   <td>
-    <a href="https://github.com/maxpoint/cyavro/blob/master/LICENSE.txt">
+    <a href="https://github.com/valassis-digital-media/cyavro/blob/master/LICENSE">
     <img src="https://anaconda.org/mvn/cyavro/badges/license.svg" alt="cyavro license" />
     </a>
   </td>
@@ -24,8 +24,8 @@ cyavro
 <tr>
   <td>Build Status</td>
   <td>
-    <a href="https://travis-ci.org/maxpoint/cyavro">
-    <img src="https://travis-ci.org/maxpoint/cyavro.svg" alt="build status" />
+    <a href="https://travis-ci.org/Valassis-Digital-Media/cyavro">
+    <img src="https://travis-ci.org/Valassis-Digital-Media/cyavro.svg" alt="build status" />
     </a>
   </td>
 </tr>
