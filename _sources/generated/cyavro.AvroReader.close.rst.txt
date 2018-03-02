@@ -1,5 +1,5 @@
-cyavro\.AvroReader\.close
-=========================
+cyavro.AvroReader.close
+=======================
 
 .. currentmodule:: cyavro
 

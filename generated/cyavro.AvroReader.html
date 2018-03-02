@@ -191,7 +191,7 @@
 </tbody>
 </table>
 <p class="rubric">Examples</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rd</span> <span class="o">=</span> <span class="n">AvroReader</span><span class="p">(</span><span class="s1">&#39;/path/to/file.avro&#39;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rd</span> <span class="o">=</span> <span class="n">AvroReader</span><span class="p">(</span><span class="s1">&#39;/path/to/file.avro&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">rd</span><span class="o">.</span><span class="n">init_reader</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">rd</span><span class="o">.</span><span class="n">init_buffers</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
@@ -212,23 +212,53 @@
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="cyavro.AvroReader.close.html#cyavro.AvroReader.close" title="cyavro.AvroReader.close"><code class="xref py py-obj docutils literal"><span class="pre">close</span></code></a>(self)</td>
+<tr class="row-odd"><td><a class="reference internal" href="cyavro.AvroReader.close.html#cyavro.AvroReader.close" title="cyavro.AvroReader.close"><code class="xref py py-obj docutils literal notranslate"><span class="pre">close</span></code></a>(self)</td>
 <td></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="cyavro.AvroReader.init_buffers.html#cyavro.AvroReader.init_buffers" title="cyavro.AvroReader.init_buffers"><code class="xref py py-obj docutils literal"><span class="pre">init_buffers</span></code></a>(self,&nbsp;size_t&nbsp;chunk_size=0)</td>
+<tr class="row-even"><td><a class="reference internal" href="cyavro.AvroReader.init_buffers.html#cyavro.AvroReader.init_buffers" title="cyavro.AvroReader.init_buffers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">init_buffers</span></code></a>(self,&nbsp;size_t&nbsp;chunk_size=0)</td>
 <td>Initialize the buffers for the reader object.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="cyavro.AvroReader.init_bytes.html#cyavro.AvroReader.init_bytes" title="cyavro.AvroReader.init_bytes"><code class="xref py py-obj docutils literal"><span class="pre">init_bytes</span></code></a>(self,&nbsp;bytes&nbsp;data)</td>
+<tr class="row-odd"><td><a class="reference internal" href="cyavro.AvroReader.init_bytes.html#cyavro.AvroReader.init_bytes" title="cyavro.AvroReader.init_bytes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">init_bytes</span></code></a>(self,&nbsp;bytes&nbsp;data)</td>
 <td></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="cyavro.AvroReader.init_file.html#cyavro.AvroReader.init_file" title="cyavro.AvroReader.init_file"><code class="xref py py-obj docutils literal"><span class="pre">init_file</span></code></a>(self,&nbsp;str&nbsp;filename)</td>
+<tr class="row-even"><td><a class="reference internal" href="cyavro.AvroReader.init_file.html#cyavro.AvroReader.init_file" title="cyavro.AvroReader.init_file"><code class="xref py py-obj docutils literal notranslate"><span class="pre">init_file</span></code></a>(self,&nbsp;str&nbsp;filename)</td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="cyavro.AvroReader.init_reader.html#cyavro.AvroReader.init_reader" title="cyavro.AvroReader.init_reader"><code class="xref py py-obj docutils literal"><span class="pre">init_reader</span></code></a>(self)</td>
+<tr class="row-odd"><td><a class="reference internal" href="cyavro.AvroReader.init_reader.html#cyavro.AvroReader.init_reader" title="cyavro.AvroReader.init_reader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">init_reader</span></code></a>(self)</td>
 <td></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="cyavro.AvroReader.read_chunk.html#cyavro.AvroReader.read_chunk" title="cyavro.AvroReader.read_chunk"><code class="xref py py-obj docutils literal"><span class="pre">read_chunk</span></code></a>(self)</td>
+<tr class="row-even"><td><a class="reference internal" href="cyavro.AvroReader.read_chunk.html#cyavro.AvroReader.read_chunk" title="cyavro.AvroReader.read_chunk"><code class="xref py py-obj docutils literal notranslate"><span class="pre">read_chunk</span></code></a>(self)</td>
 <td>Reads a chunk of records from the avro file.</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Attributes</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">buffer_lst</span></code></td>
+<td>buffer_lst: list</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">chunk_size</span></code></td>
+<td>chunk_size: ‘int’</td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">field_names</span></code></td>
+<td>field_names: list</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">field_types</span></code></td>
+<td>field_types: list</td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">filedata</span></code></td>
+<td>filedata: bytes</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">filename</span></code></td>
+<td>filename: str</td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">refholder</span></code></td>
+<td>refholder: list</td>
 </tr>
 </tbody>
 </table>

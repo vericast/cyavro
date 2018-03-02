@@ -1,5 +1,5 @@
-cyavro\.read\_avro\_bytesio\_as\_dataframe
-==========================================
+cyavro.read\_avro\_bytesio\_as\_dataframe
+=========================================
 
 .. currentmodule:: cyavro
 

@@ -24,4 +24,16 @@ cyavro.AvroReader
 
    
    
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~AvroReader.buffer_lst
+      ~AvroReader.chunk_size
+      ~AvroReader.field_names
+      ~AvroReader.field_types
+      ~AvroReader.filedata
+      ~AvroReader.filename
+      ~AvroReader.refholder
+   
    

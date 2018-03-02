@@ -181,7 +181,7 @@
 <code class="descclassname">AvroReader.</code><code class="descname">read_chunk</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#cyavro.AvroReader.read_chunk" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reads a chunk of records from the avro file.</p>
 <p>If the avro file is completed being read, this will return an empty dictionary.  It is the responsibility of the
-caller to then call <a class="reference internal" href="cyavro.AvroReader.close.html#cyavro.AvroReader.close" title="cyavro.AvroReader.close"><code class="xref py py-meth docutils literal"><span class="pre">close()</span></code></a></p>
+caller to then call <a class="reference internal" href="cyavro.AvroReader.close.html#cyavro.AvroReader.close" title="cyavro.AvroReader.close"><code class="xref py py-meth docutils literal notranslate"><span class="pre">close()</span></code></a></p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -195,7 +195,7 @@ caller to then call <a class="reference internal" href="cyavro.AvroReader.close.
 </tbody>
 </table>
 <p class="rubric">Examples</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">reader</span> <span class="o">=</span> <span class="n">AvroReader</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">reader</span> <span class="o">=</span> <span class="n">AvroReader</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="o">...</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">chunk</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">reader</span><span class="o">.</span><span class="n">read_chunk</span><span class="p">())</span>

@@ -1,5 +1,5 @@
-cyavro\.read\_avro\_file\_as\_dataframe\_iter
-=============================================
+cyavro.read\_avro\_file\_as\_dataframe\_iter
+============================================
 
 .. currentmodule:: cyavro
 

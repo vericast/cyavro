@@ -1,5 +1,5 @@
-cyavro\.avro\_path\_to\_hdf5
-============================
+cyavro.avro\_path\_to\_hdf5
+===========================
 
 .. currentmodule:: cyavro
 

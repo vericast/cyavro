@@ -1,5 +1,5 @@
-cyavro\.infer\_avro\_schema\_for\_dataframe
-===========================================
+cyavro.infer\_avro\_schema\_for\_dataframe
+==========================================
 
 .. currentmodule:: cyavro
 

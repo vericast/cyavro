@@ -1,5 +1,5 @@
-cyavro\.AvroToHDF\.avro\_file\_to\_hdf5
-=======================================
+cyavro.AvroToHDF.avro\_file\_to\_hdf5
+=====================================
 
 .. currentmodule:: cyavro
 

@@ -1,5 +1,5 @@
-cyavro\.AvroReader\.read\_chunk
-===============================
+cyavro.AvroReader.read\_chunk
+=============================
 
 .. currentmodule:: cyavro
 

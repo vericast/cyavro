@@ -184,13 +184,13 @@ large avro files to HDF5.</p>
 <p>Structured as a class so that consumers can subclass this if they wish to override behavior</p>
 <blockquote>
 <div><ul class="simple">
-<li><a class="reference internal" href="cyavro.avro_file_to_hdf5.html#cyavro.avro_file_to_hdf5" title="cyavro.avro_file_to_hdf5"><code class="xref py py-meth docutils literal"><span class="pre">avro_file_to_hdf5()</span></code></a></li>
-<li><a class="reference internal" href="cyavro.AvroToHDF.convert_df_to_hdf5.html#cyavro.AvroToHDF.convert_df_to_hdf5" title="cyavro.AvroToHDF.convert_df_to_hdf5"><code class="xref py py-meth docutils literal"><span class="pre">convert_df_to_hdf5()</span></code></a></li>
-<li><a class="reference internal" href="cyavro.read_avro_file_as_dataframe_iter.html#cyavro.read_avro_file_as_dataframe_iter" title="cyavro.read_avro_file_as_dataframe_iter"><code class="xref py py-meth docutils literal"><span class="pre">read_avro_file_as_dataframe_iter()</span></code></a></li>
+<li><a class="reference internal" href="cyavro.avro_file_to_hdf5.html#cyavro.avro_file_to_hdf5" title="cyavro.avro_file_to_hdf5"><code class="xref py py-meth docutils literal notranslate"><span class="pre">avro_file_to_hdf5()</span></code></a></li>
+<li><a class="reference internal" href="cyavro.AvroToHDF.convert_df_to_hdf5.html#cyavro.AvroToHDF.convert_df_to_hdf5" title="cyavro.AvroToHDF.convert_df_to_hdf5"><code class="xref py py-meth docutils literal notranslate"><span class="pre">convert_df_to_hdf5()</span></code></a></li>
+<li><a class="reference internal" href="cyavro.read_avro_file_as_dataframe_iter.html#cyavro.read_avro_file_as_dataframe_iter" title="cyavro.read_avro_file_as_dataframe_iter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">read_avro_file_as_dataframe_iter()</span></code></a></li>
 </ul>
 </div></blockquote>
 <p class="rubric">Examples</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">SplitByLineItemHDF</span><span class="p">(</span><span class="n">AvroToHDF</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">SplitByLineItemHDF</span><span class="p">(</span><span class="n">AvroToHDF</span><span class="p">)</span>
 <span class="gp">...</span>
 <span class="gp">... </span>    <span class="nd">@classmethod</span>
 <span class="gp">... </span>    <span class="k">def</span> <span class="nf">convert_df_to_hdf5</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">hdf_file</span><span class="p">,</span> <span class="n">table_name</span><span class="p">):</span>
@@ -207,19 +207,19 @@ large avro files to HDF5.</p>
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="cyavro.AvroToHDF.avro_file_to_hdf5.html#cyavro.AvroToHDF.avro_file_to_hdf5" title="cyavro.AvroToHDF.avro_file_to_hdf5"><code class="xref py py-obj docutils literal"><span class="pre">avro_file_to_hdf5</span></code></a>(avro_file,&nbsp;hdf_file,&nbsp;…)</td>
+<tr class="row-odd"><td><a class="reference internal" href="cyavro.AvroToHDF.avro_file_to_hdf5.html#cyavro.AvroToHDF.avro_file_to_hdf5" title="cyavro.AvroToHDF.avro_file_to_hdf5"><code class="xref py py-obj docutils literal notranslate"><span class="pre">avro_file_to_hdf5</span></code></a>(avro_file,&nbsp;hdf_file,&nbsp;…)</td>
 <td>Converts a single avro file to a single hdf5 file.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="cyavro.AvroToHDF.avro_path_to_hdf5.html#cyavro.AvroToHDF.avro_path_to_hdf5" title="cyavro.AvroToHDF.avro_path_to_hdf5"><code class="xref py py-obj docutils literal"><span class="pre">avro_path_to_hdf5</span></code></a>(path,&nbsp;hdf_file,&nbsp;table_name)</td>
+<tr class="row-even"><td><a class="reference internal" href="cyavro.AvroToHDF.avro_path_to_hdf5.html#cyavro.AvroToHDF.avro_path_to_hdf5" title="cyavro.AvroToHDF.avro_path_to_hdf5"><code class="xref py py-obj docutils literal notranslate"><span class="pre">avro_path_to_hdf5</span></code></a>(path,&nbsp;hdf_file,&nbsp;table_name)</td>
 <td>Converts avro files to a single hdf5 file.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="cyavro.AvroToHDF.convert_df_to_hdf5.html#cyavro.AvroToHDF.convert_df_to_hdf5" title="cyavro.AvroToHDF.convert_df_to_hdf5"><code class="xref py py-obj docutils literal"><span class="pre">convert_df_to_hdf5</span></code></a>(df,&nbsp;hdf_file,&nbsp;table_name)</td>
+<tr class="row-odd"><td><a class="reference internal" href="cyavro.AvroToHDF.convert_df_to_hdf5.html#cyavro.AvroToHDF.convert_df_to_hdf5" title="cyavro.AvroToHDF.convert_df_to_hdf5"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convert_df_to_hdf5</span></code></a>(df,&nbsp;hdf_file,&nbsp;table_name)</td>
 <td>Converts a given dataframe to hdf5.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="cyavro.AvroToHDF.get_avro_files_in_path.html#cyavro.AvroToHDF.get_avro_files_in_path" title="cyavro.AvroToHDF.get_avro_files_in_path"><code class="xref py py-obj docutils literal"><span class="pre">get_avro_files_in_path</span></code></a>()</td>
+<tr class="row-even"><td><a class="reference internal" href="cyavro.AvroToHDF.get_avro_files_in_path.html#cyavro.AvroToHDF.get_avro_files_in_path" title="cyavro.AvroToHDF.get_avro_files_in_path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_avro_files_in_path</span></code></a>()</td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="cyavro.AvroToHDF.read_avro_file_as_dataframe_iter.html#cyavro.AvroToHDF.read_avro_file_as_dataframe_iter" title="cyavro.AvroToHDF.read_avro_file_as_dataframe_iter"><code class="xref py py-obj docutils literal"><span class="pre">read_avro_file_as_dataframe_iter</span></code></a>(avro_file)</td>
+<tr class="row-odd"><td><a class="reference internal" href="cyavro.AvroToHDF.read_avro_file_as_dataframe_iter.html#cyavro.AvroToHDF.read_avro_file_as_dataframe_iter" title="cyavro.AvroToHDF.read_avro_file_as_dataframe_iter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">read_avro_file_as_dataframe_iter</span></code></a>(avro_file)</td>
 <td></td>
 </tr>
 </tbody>

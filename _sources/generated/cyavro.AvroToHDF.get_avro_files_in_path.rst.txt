@@ -1,5 +1,5 @@
-cyavro\.AvroToHDF\.get\_avro\_files\_in\_path
-=============================================
+cyavro.AvroToHDF.get\_avro\_files\_in\_path
+===========================================
 
 .. currentmodule:: cyavro
 

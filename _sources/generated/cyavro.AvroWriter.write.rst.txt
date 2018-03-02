@@ -1,5 +1,5 @@
-cyavro\.AvroWriter\.write
-=========================
+cyavro.AvroWriter.write
+=======================
 
 .. currentmodule:: cyavro
 

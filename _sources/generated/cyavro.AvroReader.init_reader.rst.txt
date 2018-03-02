@@ -1,5 +1,5 @@
-cyavro\.AvroReader\.init\_reader
-================================
+cyavro.AvroReader.init\_reader
+==============================
 
 .. currentmodule:: cyavro
 
