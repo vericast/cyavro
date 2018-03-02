@@ -498,7 +498,7 @@ def _get_python_type(iterable):
             return '"bytes"'
         elif issubclass(tp, dict):
             # get value element type
-            values = (x.itervalues() for x in iterable)
+            values = (six.itervalues(x) for x in iterable)
             value_type = _get_python_type(
                 list(itertools.chain.from_iterable(values)))
             return '{{"type": "map", "values": {} }}'.format(value_type)
