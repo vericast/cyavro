@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>cyavro.AvroWriter &mdash; cyavro 0.7.0 documentation</title>
+  <title>cyavro.AvroWriter &mdash; cyavro 0.7.1 documentation</title>
   
 
   
@@ -24,28 +24,19 @@
 
   
 
-  
-  
-    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="cyavro 0.7.0 documentation" href="../index.html"/>
-        <link rel="up" title="Extender API Reference" href="../api.html"/>
-        <link rel="next" title="cyavro.AvroWriter.close" href="cyavro.AvroWriter.close.html"/>
-        <link rel="prev" title="cyavro.AvroReader.read_chunk" href="cyavro.AvroReader.read_chunk.html"/> 
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="cyavro.AvroWriter.close" href="cyavro.AvroWriter.close.html" />
+    <link rel="prev" title="cyavro.AvroReader.read_chunk" href="cyavro.AvroReader.read_chunk.html" /> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -67,7 +58,7 @@
             
             
               <div class="version">
-                0.7.0
+                0.7.1
               </div>
             
           
@@ -114,7 +105,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">cyavro</a>
@@ -122,9 +113,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -178,24 +170,22 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>filename</strong> : str</p>
-<blockquote>
-<div><p>Output filename to be written.</p>
-</div></blockquote>
-<p><strong>codec</strong> : str</p>
-<blockquote>
-<div><p>Codec to use fot the file.  Valid arguments are {‘null’, ‘deflate’, ‘snappy’}.  This corresponds to which
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>filename</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
+<dd><p class="first last">Output filename to be written.</p>
+</dd>
+<dt><strong>codec</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
+<dd><p class="first last">Codec to use fot the file.  Valid arguments are {‘null’, ‘deflate’, ‘snappy’}.  This corresponds to which
 compression library the encoder will use.</p>
-</div></blockquote>
-<p><strong>schema</strong> : str</p>
-<blockquote>
-<div><p>Avro Schema as a string.</p>
-</div></blockquote>
-<p><strong>block_size</strong> : size_t</p>
-<blockquote class="last">
-<div><p>Some of the compression libraries allow specifying what the block size to use is.  This specifies the block size
+</dd>
+<dt><strong>schema</strong> <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
+<dd><p class="first last">Avro Schema as a string.</p>
+</dd>
+<dt><strong>block_size</strong> <span class="classifier-delimiter">:</span> <span class="classifier">size_t</span></dt>
+<dd><p class="first last">Some of the compression libraries allow specifying what the block size to use is.  This specifies the block size
 in bytes.</p>
-</div></blockquote>
+</dd>
+</dl>
 </td>
 </tr>
 </tbody>
@@ -227,9 +217,7 @@ in bytes.</p>
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -251,7 +239,7 @@ in bytes.</p>
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -269,7 +257,8 @@ in bytes.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.7.0',
+            VERSION:'0.7.1',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -282,19 +271,13 @@ in bytes.</p>
 
   
 
-  
-  
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-  
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-   
+  </script> 
 
 </body>
 </html>
