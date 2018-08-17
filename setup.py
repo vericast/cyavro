@@ -76,7 +76,7 @@ if platform.system() == "Darwin":
         e.sources.append("cyavro/osx/fmemopen.c")
         e.depends.append('cyavro/osx/fmemopen.h')
 
-version = str(os.environ.get('PKG_VERSION', "0.7.0"))
+version = str(os.environ.get('PKG_VERSION', "0.7.1"))
 
 
 def write_version_py():
