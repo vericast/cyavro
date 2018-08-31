@@ -3,6 +3,12 @@ cyavro
 
 <table>
 <tr>
+  <td>Repo Status</td>
+  <td>
+    <a href="https://www.repostatus.org/#inactive"><img src="https://www.repostatus.org/badges/latest/inactive.svg" alt="Project Status: Inactive – The project has reached a stable, usable state but is no longer being actively developed; support/maintenance will be provided as time allows." /></a>
+  </td>
+</tr>
+<tr>
   <td>Latest Release</td>
   <td>
     <a href="https://pypi.python.org/pypi/cyavro">
@@ -16,7 +22,7 @@ cyavro
 <tr>
   <td>License</td>
   <td>
-    <a href="https://github.com/maxpoint/cyavro/blob/master/LICENSE.txt">
+    <a href="https://github.com/Valassis-Digital-Media/cyavro/blob/master/LICENSE.txt">
     <img src="https://anaconda.org/mvn/cyavro/badges/license.svg" alt="cyavro license" />
     </a>
   </td>
@@ -24,16 +30,16 @@ cyavro
 <tr>
   <td>Build Status</td>
   <td>
-    <a href="https://travis-ci.org/maxpoint/cyavro">
-    <img src="https://travis-ci.org/maxpoint/cyavro.svg" alt="build status" />
+    <a href="https://travis-ci.org/Valassis-Digital-Media/cyavro">
+    <img src="https://travis-ci.org/Valassis-Digital-Media/cyavro.svg" alt="build status" />
     </a>
   </td>
 </tr>
 <tr>
   <td>Documentation</td>
   <td>
-    <a href="https://maxpoint.github.io/cyavro/">
-    maxpoint.github.io/cyavro/
+    <a href="http://valassis-digital-media.github.io/cyavro/">
+    valassis-digital-media.github.io/cyavro/
     </a>
   </td>
 </tr>
