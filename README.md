@@ -1,6 +1,8 @@
 cyavro
 ======
 
+This project is no longer maintained.  Please use spavro or fastavro instead.
+
 <table>
 <tr>
   <td>Repo Status</td>
